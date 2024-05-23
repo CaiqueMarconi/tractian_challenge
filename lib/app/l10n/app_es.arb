@@ -1,0 +1,20 @@
+{
+    "loginEmail" : "Correo electrónico",
+    "password" : "Contraseña",
+    "repeat_password" : "Repite la contrasena",
+    "has_account" : "No tienes una cuenta?",
+    "register" : "registro",
+    "enter" : "ENTRAR",
+    "create_account" : "Create Account",
+    "no_locked_add" : "No tienes cerraduras\nagregadas.",
+    "info_home" : "El teléfono debe estar al menos a 2 metros del dispositivo durante el proceso de emparejamiento.",
+    "lock_not_founded" : "no se encontró ninguna cerradura",
+    "please_input_email" : "Por favor ingrese el correo electrónico.",
+    "is_not_valid_email" : "No es un tipo de correo electrónico válido.",
+    "please_input_password" : "Please enter your password.",
+    "password_is_not_equals" : "Las contraseñas no son las mismas.",
+    "password_less_than_six" : "La contraseña debe tener más de 6 caracteres.",
+    "@helloWorld" : {
+        "description": "hello"
+    }
+}

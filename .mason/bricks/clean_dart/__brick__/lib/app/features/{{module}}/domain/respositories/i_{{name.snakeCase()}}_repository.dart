@@ -1,0 +1,11 @@
+
+
+
+import 'package:fpdart/fpdart.dart';
+import 'package:saga_home/app/core/shared/failures/app_failure/i_app_failure.dart';
+import '../helpers/params/{{params.snakeCase()}}_params.dart';
+import '../entities/{{entities.snakeCase()}}_entity.dart';
+
+abstract class I{{name.pascalCase()}}Repository {
+  Future<Either<IAppFailure, {{entities.pascalCase()}}Entity>> call({{params.pascalCase()}}Params params);
+}
