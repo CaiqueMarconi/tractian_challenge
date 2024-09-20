@@ -2,19 +2,4 @@
     "loginEmail" : "Email",
     "password" : "Password",
     "repeat_password" : "Repeat password",
-    "has_account" : "Don't have an account?",
-    "register" : "Register",
-    "enter" : "ENTER",
-    "create_account" : "Create Account",
-    "no_locked_add" : "You have no added\nlocks.",
-    "info_home" : "The phone needs to be at least 2 meters from the device during the pairing process",
-    "lock_not_founded" : "No locks found",
-    "please_input_email" : "Please enter email.",
-    "is_not_valid_email" : "It is not a valid email type.",
-    "please_input_password" : "Please enter password",
-    "password_is_not_equals" : "The passwords are not the same.",
-    "password_less_than_six" : "The password must have more than 6 characters.",
-    "@helloWorld" : {
-        "description": "hello"
-    }
 }

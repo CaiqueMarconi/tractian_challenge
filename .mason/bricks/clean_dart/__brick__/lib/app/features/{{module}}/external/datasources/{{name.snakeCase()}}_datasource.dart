@@ -1,6 +1,6 @@
 
 import '../../infra/datasources/i_{{name.snakeCase()}}_datasource.dart';
-import '../helpers/params/{{params.snakeCase()}}_params.dart';
+import '../helpers/params/{{name.snakeCase()}}_param.dart';
 import '../entities/{{entities.snakeCase()}}_entity.dart';
 
 
@@ -9,7 +9,7 @@ class {{name.pascalCase()}}Datasource implements I{{name.pascalCase()}}Datasourc
   const {{name.pascalCase()}}Datasource();
 
   @override
-  Future<{{entities.pascalCase()}}Entity> call({{params.pascalCase()}}Params params) async {
+  Future<{{entities.pascalCase()}}Entity> call({{name.pascalCase()}}Param params) async {
     return;
   }
 }

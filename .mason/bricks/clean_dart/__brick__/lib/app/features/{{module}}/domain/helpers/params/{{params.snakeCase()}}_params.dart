@@ -1,5 +1,0 @@
-
-
-class {{params.pascalCase()}}Params{
-  
-}
