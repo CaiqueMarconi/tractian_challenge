@@ -16,7 +16,10 @@ class GetLocationUsecase implements IGetLocationUsecase {
   Future<Either<IAppFailure, List<LocationEntity>>> call(
       GetLocationParams params) async {
     final responseData = await _repository.call(params);
-    final result = responseData.fold((l) => Left(l), (r) => r);
+
+    final result = responseData.fold((l) => l, (r) => r);
+
+    if (result is IAppFailure) return Left(result);
 
     final listMap = result as List<Map<String, dynamic>>;
     final listLocation = await compute(computeData, listMap);

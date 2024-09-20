@@ -8,8 +8,14 @@ import 'package:model/app/features/home/presenter/controllers/home_controller.da
 import 'package:model/app/features/home/presenter/pages/home_page.dart';
 import 'package:model/app/features/home/presenter/stores/home_store.dart';
 
+import 'domain/respositories/i_get_assets_repository.dart';
 import 'domain/respositories/i_get_location_repository.dart';
+import 'domain/usecases/get_assets_usecase/get_assets_usecase.dart';
+import 'domain/usecases/get_assets_usecase/i_get_assets_usecase.dart';
+import 'external/datasources/get_assets_datasource.dart';
+import 'infra/datasources/i_get_assets_datasource.dart';
 import 'infra/datasources/i_get_location_datasource.dart';
+import 'infra/repositories/get_assets_repository.dart';
 
 class HomeModule extends Module {
   @override
@@ -31,6 +37,11 @@ class HomeModule extends Module {
     i.addLazySingleton<IGetLocationUsecase>(GetLocationUsecase.new);
     i.addLazySingleton<IGetLocationRepository>(GetLocationRepository.new);
     i.addLazySingleton<IGetLocationDatasource>(GetLocationDatasource.new);
+
+    // Get Assets
+    i.addLazySingleton<IGetAssetsUsecase>(GetAssetsUsecase.new);
+    i.addLazySingleton<IGetAssetsRepository>(GetAssetsRepository.new);
+    i.addLazySingleton<IGetAssetsDatasource>(GetAssetsDatasource.new);
   }
 
   @override

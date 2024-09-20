@@ -14,42 +14,51 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     widget.homeController.getLocation();
+    widget.homeController.getAssets();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Theme(
-      data: Theme.of(context).copyWith(
-        dividerColor: Colors.transparent, // Remove a linha separadora
-        splashColor: Colors.transparent, // Remove efeito ao clicar
-        highlightColor: Colors.transparent, // Remove efeito de destaque
+      body: ListView.builder(
+        itemCount: widget.homeController.listLocation.length,
+        itemBuilder: (context, index) {
+          final location = widget.homeController.listLocation[index];
+
+          return Theme(
+            data: Theme.of(context).copyWith(
+              dividerColor: Colors.transparent,
+            ),
+            child: ListTileTheme(
+              data: const ListTileThemeData(
+                horizontalTitleGap: 0,
+                minLeadingWidth: 0,
+                minVerticalPadding: 0,
+              ),
+              child: ExpansionTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                tilePadding: const EdgeInsets.symmetric(vertical: 6),
+                visualDensity: VisualDensity.compact,
+                childrenPadding:
+                    const EdgeInsets.only(left: 16, top: 6, bottom: 6),
+                dense: false,
+                title: Text(location.name),
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: location.locationChildren?.length,
+                    itemBuilder: (context, index) {
+                      final childNode = location.locationChildren?[index];
+                      return Text(childNode!.name);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
-      child: ExpansionTile(
-        title: Text('Main ExpansionTile'),
-        leading: Icon(Icons.expand_more), // Seta à esquerda
-        trailing: SizedBox.shrink(), // Remove seta à direita
-        children: [
-          ExpansionTile(
-            title: Text('Sub ExpansionTile 1'),
-            leading: Icon(Icons.expand_more),
-            trailing: SizedBox.shrink(),
-            children: [
-              ListTile(title: Text('Item 1')),
-              ListTile(title: Text('Item 2')),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Sub ExpansionTile 2'),
-            leading: Icon(Icons.expand_more),
-            trailing: SizedBox.shrink(),
-            children: [
-              ListTile(title: Text('Item 3')),
-              ListTile(title: Text('Item 4')),
-            ],
-          ),
-        ],
-      ),
-    ));
+    );
   }
 }
