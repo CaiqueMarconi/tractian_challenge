@@ -16,7 +16,7 @@ class GetLocationDatasource implements IGetLocationDatasource {
     final result = await _httpService.get(
       HttpParam(
         url:
-            'https://fake-api.tractian.com/companies/662fd0fab3fd5656edb39af5/locations',
+            'https://fake-api.tractian.com/companies/${params.companyId}/locations',
       ),
     );
     final List<Map<String, dynamic>> typedListData =

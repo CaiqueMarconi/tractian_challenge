@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ThemeManager {
-  static Color primaryColor = const Color(0xff2184BB);
-  static Color secondaryColor = const Color(0xfff99453);
+  static Color primaryColor = const Color(0xff346fec);
+  static Color secondaryColor = const Color(0xff141c2c);
 
   static Color greyLight = const Color(0xffF4F4F4);
+  static Color greyMedium = const Color.fromARGB(255, 238, 238, 238);
   static Color greyDark = const Color.fromARGB(255, 68, 68, 68);
   static Color white = const Color(0xffffffff);
   static Color black = const Color(0xff000000);
