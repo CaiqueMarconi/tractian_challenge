@@ -5,7 +5,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'package:model/app/core/theme/fonts/font_manager.dart';
 import 'package:model/app/core/theme/images/images.dart';
 import 'package:model/app/core/theme/theme_manager/theme.dart';
-import 'package:model/app/features/home/domain/entities/companie_entity.dart';
+import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
 import 'package:model/app/features/home/presenter/widgets/list_tile_custom_widget.dart';
@@ -99,7 +99,11 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.symmetric(
                     vertical: size.height * 0.01,
                   ),
-                  child: const TextFieldSearchItemWidget(),
+                  child: TextFieldSearchItemWidget(
+                    onChanged: (query) {
+                      widget.homeController.setSearchQuery(query);
+                    },
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(

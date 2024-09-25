@@ -1,6 +1,7 @@
 import 'package:model/app/core/shared/services/http_Service/helpers/params/http_param.dart';
 import 'package:model/app/core/shared/services/http_Service/helpers/responses/http_response.dart';
 import 'package:model/app/features/home/domain/entities/asset_entity.dart';
+import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_assets_params.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
 
@@ -22,8 +23,7 @@ class HomeMock {
   static final assetEntityMock = AssetEntity(
     id: 'id',
     name: 'name',
-    status: 'status',
     gatewayId: 'gatewayId',
-    children: [],
+    typeItem: TypeItemEnum.asset,
   );
 }

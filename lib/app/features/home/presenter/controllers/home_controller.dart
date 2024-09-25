@@ -1,4 +1,4 @@
-import 'package:model/app/features/home/domain/entities/companie_entity.dart';
+import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
@@ -46,6 +46,10 @@ class HomeController {
     } else {
       _homeStore.setTypeState(typeStateSelected);
     }
+  }
+
+  void setSearchQuery(String query) {
+    _homeStore.setSearchQuery(query);
   }
 
   Future<void> generateTreeNode(String companyId) async {

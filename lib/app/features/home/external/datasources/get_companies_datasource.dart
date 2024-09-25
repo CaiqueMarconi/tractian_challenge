@@ -2,7 +2,7 @@ import 'package:model/app/core/shared/services/http_Service/helpers/params/http_
 import 'package:model/app/core/shared/services/http_Service/i_http_service.dart';
 import 'package:model/app/features/home/external/mappers/companie_mapper.dart';
 
-import '../../domain/entities/companie_entity.dart';
+import '../../domain/entities/company_entity.dart';
 import '../../infra/datasources/i_get_companies_datasource.dart';
 
 class GetCompaniesDatasource implements IGetCompaniesDatasource {

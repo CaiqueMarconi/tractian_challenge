@@ -1,4 +1,4 @@
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
+import 'package:model/app/features/home/domain/entities/item_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
@@ -19,7 +19,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
       for (var i = 0; i < unappreciatedCompenents.length; i++) {
         listTreeNode.add(
           TreeEntity(
-            item: AssetEntity(
+            item: ItemEntity(
               id: unappreciatedCompenents[i].item.id,
               name: unappreciatedCompenents[i].item.name,
               sensorType: unappreciatedCompenents[i].item.sensorType,
@@ -43,7 +43,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
         final node = location.copyWith(locationChildren: assets);
         listTreeNode.add(
           TreeEntity(
-            item: AssetEntity(
+            item: ItemEntity(
               id: location.id,
               name: location.name,
               typeItem: TypeItemEnum.location,
@@ -61,7 +61,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
             final node = location.copyWith(locationChildren: assets);
             listTreeNode.add(
               TreeEntity(
-                item: AssetEntity(
+                item: ItemEntity(
                   id: location.id,
                   name: location.name,
                   typeItem: TypeItemEnum.location,
@@ -74,7 +74,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
       } else {
         listTreeNode.add(
           TreeEntity(
-            item: AssetEntity(
+            item: ItemEntity(
               id: location.id,
               name: location.name,
               typeItem: TypeItemEnum.location,

@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:model/app/core/failures/app_failure/i_app_failure.dart';
-import 'package:model/app/features/home/domain/entities/companie_entity.dart';
+import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/domain/respositories/i_get_companies_repository.dart';
 import 'package:model/app/features/home/domain/usecases/get_companies_usecase/get_companies_usecase.dart';
 

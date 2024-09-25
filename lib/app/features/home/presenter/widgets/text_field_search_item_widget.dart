@@ -4,14 +4,18 @@ import '../../../../core/theme/fonts/font_manager.dart';
 import '../../../../core/theme/theme_manager/theme.dart';
 
 class TextFieldSearchItemWidget extends StatelessWidget {
+  final ValueChanged<String>? onChanged;
+
   const TextFieldSearchItemWidget({
     super.key,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return TextFormField(
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: 'Buscar ativo ou local',
         hintStyle: TextStyle(

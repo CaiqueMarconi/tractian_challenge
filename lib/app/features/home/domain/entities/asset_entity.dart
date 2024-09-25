@@ -11,7 +11,6 @@ class AssetEntity {
   final TypeStateEnum? status;
   final String? gatewayId;
   final String? locationId;
-  final List<AssetEntity>? children;
   final TypeItemEnum typeItem;
   AssetEntity({
     required this.id,
@@ -22,7 +21,6 @@ class AssetEntity {
     this.status,
     this.gatewayId,
     this.locationId,
-    this.children,
     required this.typeItem,
   });
 
@@ -35,7 +33,6 @@ class AssetEntity {
     TypeStateEnum? status,
     String? gatewayId,
     String? locationId,
-    List<AssetEntity>? children,
     TypeItemEnum? typeItem,
   }) {
     return AssetEntity(
@@ -47,7 +44,6 @@ class AssetEntity {
       status: status ?? this.status,
       gatewayId: gatewayId ?? this.gatewayId,
       locationId: locationId ?? this.locationId,
-      children: children ?? this.children,
       typeItem: typeItem ?? this.typeItem,
     );
   }

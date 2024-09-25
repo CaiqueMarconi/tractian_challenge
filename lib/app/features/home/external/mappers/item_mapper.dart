@@ -1,10 +1,10 @@
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
+import 'package:model/app/features/home/domain/entities/item_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 
-class AssetMapper {
-  static AssetEntity fromMap(Map<String, dynamic> map) {
-    return AssetEntity(
+class ItemMapper {
+  static ItemEntity fromMap(Map<String, dynamic> map) {
+    return ItemEntity(
       id: map['id'],
       name: map['name'],
       status: _setTypeStatusItem(map),

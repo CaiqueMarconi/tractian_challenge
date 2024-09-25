@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import '../../../../../core/failures/app_failure/i_app_failure.dart';
-import '../../entities/companie_entity.dart';
+import '../../entities/company_entity.dart';
 import '../../respositories/i_get_companies_repository.dart';
 import 'i_get_companies_usecase.dart';
 
