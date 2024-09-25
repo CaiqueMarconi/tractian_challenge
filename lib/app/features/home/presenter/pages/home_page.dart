@@ -144,10 +144,10 @@ class _HomePageState extends State<HomePage> {
                             visualDensity: VisualDensity.compact,
                             childrenPadding: itemNode.children.isEmpty
                                 ? EdgeInsets.zero
-                                : const EdgeInsets.only(
-                                    left: 16,
-                                    top: 6,
-                                    bottom: 6,
+                                : EdgeInsets.only(
+                                    left: size.width * 0.04,
+                                    top: size.height * 0.006,
+                                    bottom: size.height * 0.006,
                                   ),
                             trailing: const SizedBox.shrink(),
                             leading: itemNode.children.isEmpty
@@ -203,10 +203,10 @@ class ExpansionTileCustomWidget extends StatelessWidget {
       controlAffinity: ListTileControlAffinity.leading,
       tilePadding: const EdgeInsets.symmetric(vertical: 0),
       visualDensity: VisualDensity.compact,
-      childrenPadding: const EdgeInsets.only(
-        left: 16,
-        top: 6,
-        bottom: 6,
+      childrenPadding: EdgeInsets.only(
+        left: size.width * 0.04,
+        top: size.height * 0.006,
+        bottom: size.height * 0.006,
       ),
       leading: item.children.isEmpty ? const SizedBox(width: 24) : null,
       dense: false,
