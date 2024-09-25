@@ -15,25 +15,6 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
     final unappreciatedCompenents =
         listAssets.where((element) => element.item.locationId == null).toList();
 
-    if (unappreciatedCompenents.isNotEmpty) {
-      for (var i = 0; i < unappreciatedCompenents.length; i++) {
-        listTreeNode.add(
-          TreeEntity(
-            item: ItemEntity(
-              id: unappreciatedCompenents[i].item.id,
-              name: unappreciatedCompenents[i].item.name,
-              sensorType: unappreciatedCompenents[i].item.sensorType,
-              gatewayId: unappreciatedCompenents[i].item.gatewayId,
-              sensorId: unappreciatedCompenents[i].item.sensorId,
-              typeItem: TypeItemEnum.component,
-              status: unappreciatedCompenents[i].item.status,
-            ),
-            children: [],
-          ),
-        );
-      }
-    }
-
     for (var i = 0; i < listLocations.length; i++) {
       final location = listLocations[i];
       final assets = listAssets
@@ -78,6 +59,25 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
               id: location.id,
               name: location.name,
               typeItem: TypeItemEnum.location,
+            ),
+            children: [],
+          ),
+        );
+      }
+    }
+    // add components unappreciated in the tree
+    if (unappreciatedCompenents.isNotEmpty) {
+      for (var i = 0; i < unappreciatedCompenents.length; i++) {
+        listTreeNode.add(
+          TreeEntity(
+            item: ItemEntity(
+              id: unappreciatedCompenents[i].item.id,
+              name: unappreciatedCompenents[i].item.name,
+              sensorType: unappreciatedCompenents[i].item.sensorType,
+              gatewayId: unappreciatedCompenents[i].item.gatewayId,
+              sensorId: unappreciatedCompenents[i].item.sensorId,
+              typeItem: TypeItemEnum.component,
+              status: unappreciatedCompenents[i].item.status,
             ),
             children: [],
           ),

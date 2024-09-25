@@ -66,6 +66,10 @@ class HomeController {
     homeStore.setListTreeNode(filteredTree);
   }
 
+  void setListTreeNodeEmpty() {
+    homeStore.setListTreeNode([]);
+  }
+
   List<TreeEntity> filterTreeEntities(
     List<TreeEntity> nodes,
     String query,

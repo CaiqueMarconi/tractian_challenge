@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
@@ -12,6 +11,7 @@ class HomeState {
   final String searchQuery;
   final bool typeAlertSelected;
   final bool typeSensorSelected;
+  final bool loadingDataTreeNode;
   HomeState({
     required this.listLocation,
     required this.listAssets,
@@ -21,6 +21,7 @@ class HomeState {
     required this.searchQuery,
     required this.typeAlertSelected,
     required this.typeSensorSelected,
+    required this.loadingDataTreeNode,
   });
 
   factory HomeState.init() => HomeState(
@@ -32,6 +33,7 @@ class HomeState {
         listTreeNodeSearched: [],
         typeAlertSelected: false,
         typeSensorSelected: false,
+        loadingDataTreeNode: false,
       );
 
   HomeState copyWith({
@@ -43,6 +45,7 @@ class HomeState {
     String? searchQuery,
     bool? typeAlertSelected,
     bool? typeSensorSelected,
+    bool? loadingDataTreeNode,
   }) {
     return HomeState(
       listLocation: listLocation ?? this.listLocation,
@@ -53,6 +56,7 @@ class HomeState {
       searchQuery: searchQuery ?? this.searchQuery,
       typeAlertSelected: typeAlertSelected ?? this.typeAlertSelected,
       typeSensorSelected: typeSensorSelected ?? this.typeSensorSelected,
+      loadingDataTreeNode: loadingDataTreeNode ?? this.loadingDataTreeNode,
     );
   }
 }
