@@ -24,6 +24,6 @@ class HomeMock {
     name: 'name',
     status: 'status',
     gatewayId: 'gatewayId',
-    listChildren: [],
+    children: [],
   );
 }

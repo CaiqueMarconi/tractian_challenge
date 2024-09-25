@@ -1,5 +1,4 @@
 import 'package:model/app/features/home/domain/entities/asset_entity.dart';
-import 'package:model/app/features/home/domain/entities/item_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
@@ -20,13 +19,14 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
       for (var i = 0; i < unappreciatedCompenents.length; i++) {
         listTreeNode.add(
           TreeEntity(
-            item: ItemEntity(
+            item: AssetEntity(
               id: unappreciatedCompenents[i].id,
               name: unappreciatedCompenents[i].name,
               sensorType: unappreciatedCompenents[i].sensorType,
               gatewayId: unappreciatedCompenents[i].gatewayId,
               sensorId: unappreciatedCompenents[i].sensorId,
               typeItem: TypeItemEnum.component,
+              status: unappreciatedCompenents[i].status,
             ),
             children: [],
           ),
@@ -43,7 +43,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
         final node = location.copyWith(locationChildren: assets);
         listTreeNode.add(
           TreeEntity(
-            item: ItemEntity(
+            item: AssetEntity(
               id: location.id,
               name: location.name,
               typeItem: TypeItemEnum.location,
@@ -61,7 +61,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
             final node = location.copyWith(locationChildren: assets);
             listTreeNode.add(
               TreeEntity(
-                item: ItemEntity(
+                item: AssetEntity(
                   id: location.id,
                   name: location.name,
                   typeItem: TypeItemEnum.location,
@@ -74,7 +74,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
       } else {
         listTreeNode.add(
           TreeEntity(
-            item: ItemEntity(
+            item: AssetEntity(
               id: location.id,
               name: location.name,
               typeItem: TypeItemEnum.location,

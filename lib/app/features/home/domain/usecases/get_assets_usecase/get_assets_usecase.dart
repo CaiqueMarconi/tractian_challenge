@@ -45,7 +45,7 @@ class GetAssetsUsecase implements IGetAssetsUsecase {
 
       // Atualizar os ativos filhos com sua lista de filhos
       listAssetsChildren[i] = listAssetsChildren[i].copyWith(
-        listChildren: children,
+        children: children,
       );
     }
 
@@ -58,7 +58,7 @@ class GetAssetsUsecase implements IGetAssetsUsecase {
 
       // Atualizar o ativo pai com sua lista de filhos
       listAssetsParent[i] = listAssetsParent[i].copyWith(
-        listChildren: children,
+        children: children,
       );
     }
 

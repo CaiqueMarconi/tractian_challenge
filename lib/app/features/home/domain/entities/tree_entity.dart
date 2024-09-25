@@ -1,7 +1,9 @@
 import 'package:model/app/features/home/domain/entities/item_entity.dart';
 
+import 'asset_entity.dart';
+
 class TreeEntity {
-  final ItemEntity item;
+  final AssetEntity item;
   final List<dynamic> children;
   TreeEntity({
     required this.item,

@@ -8,6 +8,7 @@ import 'package:model/app/core/theme/theme_manager/theme.dart';
 import 'package:model/app/features/home/domain/entities/companie_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
+import 'package:model/app/features/home/presenter/widgets/list_tile_custom_widget.dart';
 
 import '../widgets/node_title_widget.dart';
 import '../widgets/text_field_search_item_widget.dart';
@@ -156,19 +157,14 @@ class _HomePageState extends State<HomePage> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: itemNode.children.length,
                                 itemBuilder: (context, index) {
-                                  final childItem = itemNode.children[index];
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                      left: size.width * 0.04,
-                                      bottom: size.height * 0.014,
-                                    ),
-                                    child: ListTileTheme(
-                                      data: theme.listTileTheme,
-                                      child: ExpansionTileCustomWidget(
-                                        item: childItem,
-                                      ),
-                                    ),
-                                  );
+                                  final childItem = itemNode;
+                                  return childItem.children.isEmpty
+                                      ? ListTileCustomWidget(
+                                          node: childItem.children[index],
+                                        )
+                                      : ExpansionTileCustomWidget(
+                                          item: childItem.children[index],
+                                        );
                                 },
                               ),
                             ],
@@ -207,23 +203,26 @@ class ExpansionTileCustomWidget extends StatelessWidget {
         bottom: 6,
       ),
       dense: false,
-      title: Row(
-        children: [
-          SizedBox(width: size.width * 0.02),
-          SvgPicture.asset(
-            ImagesManager.location,
-          ),
-          SizedBox(width: size.width * 0.02),
-          Text(
-            item.name,
-            style: TextStyle(
-              fontFamily: FontManager.montserratMedium,
-              fontSize: size.height * 0.018,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
+      title: NodeTitleWidget(
+        treeNode: item,
       ),
+      children: [
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: item.children.length,
+          itemBuilder: (context, index) {
+            final childItem = item;
+            return childItem.children.isEmpty
+                ? ListTileCustomWidget(
+                    node: childItem.children[index],
+                  )
+                : ExpansionTileCustomWidget(
+                    item: childItem.children[index],
+                  );
+          },
+        ),
+      ],
     );
   }
 }

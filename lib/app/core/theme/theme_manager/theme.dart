@@ -11,6 +11,7 @@ class ThemeManager {
   static Color black = const Color(0xff000000);
   static Color red = const Color.fromARGB(255, 255, 0, 0);
   static Color green = const Color.fromARGB(255, 30, 160, 69);
+  static Color darkBlue = const Color(0xFF17192D);
 
   static final themeLight = ThemeData(
     useMaterial3: true,

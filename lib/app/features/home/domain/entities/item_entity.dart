@@ -1,4 +1,5 @@
 import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
+import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 
 class ItemEntity {
   final String id;
@@ -6,7 +7,7 @@ class ItemEntity {
   final String? parentId;
   final String? sensorType;
   final String? sensorId;
-  final String? status;
+  final TypeStateEnum? status;
   final String? gatewayId;
   final String? locationId;
   final TypeItemEnum typeItem;
