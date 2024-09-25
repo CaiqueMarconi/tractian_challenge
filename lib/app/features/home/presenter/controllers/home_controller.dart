@@ -90,7 +90,10 @@ class HomeController {
     } else if (typeSensorSelected == true) {
       typeState = TypeStateEnum.sensor;
     }
-    final matchesTypeState = node.item.status == typeState;
+    bool matchesTypeState = true;
+    if (typeState != null) {
+      matchesTypeState = node.item.status == typeState;
+    }
 
     final filteredChildren = filterDynamicChildren(
       node.children,

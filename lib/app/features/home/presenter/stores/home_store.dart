@@ -1,9 +1,5 @@
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
-import 'package:model/app/features/home/domain/entities/item_entity.dart';
-import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
 import 'package:model/app/features/home/domain/usecases/generate_tree_node_usecase/i_generate_tree_node_usecase.dart';
 import 'package:model/app/features/home/domain/usecases/get_assets_usecase/i_get_assets_usecase.dart';

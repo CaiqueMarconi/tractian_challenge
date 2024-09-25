@@ -6,7 +6,6 @@ import 'package:model/app/core/theme/fonts/font_manager.dart';
 import 'package:model/app/core/theme/images/images.dart';
 import 'package:model/app/core/theme/theme_manager/theme.dart';
 import 'package:model/app/features/home/domain/entities/company_entity.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
 import 'package:model/app/features/home/presenter/widgets/list_tile_custom_widget.dart';
 
