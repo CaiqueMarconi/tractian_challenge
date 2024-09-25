@@ -58,7 +58,6 @@ final class HomeStore extends Store<HomeState> {
   // Change value of TypeAsset variable
   void setTypeState(TypeStateEnum? typeState) {
     update(state.copyWith(typeAsset: typeState));
-    applyFilter();
   }
 
   // Generate Tree Node
@@ -79,87 +78,21 @@ final class HomeStore extends Store<HomeState> {
       listAssets: state.listAssets,
       listLocations: state.listLocation,
     );
-    _listTreeNodeOriginal = result;
-    update(state.copyWith(listTreeNode: result));
+
+    update(
+      state.copyWith(
+        listTreeNode: result,
+        listTreeNodeSearched: result,
+      ),
+    );
     setLoading(false);
   }
 
-  List<TreeEntity> _listTreeNodeOriginal = [];
+  void setListTreeNode(List<TreeEntity> listTreeNode) {
+    update(state.copyWith(listTreeNode: listTreeNode));
+  }
 
   void setSearchQuery(String query) {
     update(state.copyWith(searchQuery: query));
-    applyFilter();
-  }
-
-  void applyFilter() {
-    final filteredTree = filterTreeEntities(
-      _listTreeNodeOriginal,
-      state.searchQuery,
-      state.typeAsset,
-    );
-    update(state.copyWith(listTreeNode: filteredTree));
-  }
-
-  List<TreeEntity> filterTreeEntities(
-    List<TreeEntity> nodes,
-    String query,
-    TypeStateEnum? typeState,
-  ) {
-    return nodes
-        .map((node) => filterTreeEntity(node, query, typeState))
-        .where((node) => node != null)
-        .cast<TreeEntity>()
-        .toList();
-  }
-
-  TreeEntity? filterTreeEntity(
-    TreeEntity node,
-    String query,
-    TypeStateEnum? typeState,
-  ) {
-    final matchesQuery =
-        node.item.name.toLowerCase().contains(query.toLowerCase());
-    final matchesTypeState = typeState == null || node.item.status == typeState;
-
-    final filteredChildren = filterDynamicChildren(
-      node.children,
-      query,
-      typeState,
-    );
-
-    if ((matchesQuery && matchesTypeState) || filteredChildren.isNotEmpty) {
-      return node.copyWith(children: filteredChildren);
-    } else {
-      return null;
-    }
-  }
-
-  List<dynamic> filterDynamicChildren(
-    List<dynamic> children,
-    String query,
-    TypeStateEnum? typeState,
-  ) {
-    final filteredChildren = <dynamic>[];
-
-    for (var child in children) {
-      if (child is TreeEntity) {
-        final filteredChild = filterTreeEntity(child, query, typeState);
-        if (filteredChild != null) {
-          filteredChildren.add(filteredChild);
-        }
-      } else if (child is AssetEntity ||
-          child is LocationEntity ||
-          child is ItemEntity) {
-        final matchesQuery =
-            child.name.toLowerCase().contains(query.toLowerCase());
-        final matchesTypeState = typeState == null || child.status == typeState;
-
-        if (matchesQuery && matchesTypeState) {
-          filteredChildren.add(child);
-        }
-      }
-    }
-
-    return filteredChildren;
   }
 }

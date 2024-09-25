@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
@@ -11,6 +10,7 @@ class HomeState {
   final List<CompanyEntity> listCompanies;
   final TypeStateEnum? typeAsset;
   final List<TreeEntity> listTreeNode;
+  final List<TreeEntity> listTreeNodeSearched;
   final String searchQuery;
   HomeState({
     required this.listLocation,
@@ -18,6 +18,7 @@ class HomeState {
     required this.listCompanies,
     this.typeAsset,
     required this.listTreeNode,
+    required this.listTreeNodeSearched,
     required this.searchQuery,
   });
 
@@ -27,6 +28,7 @@ class HomeState {
         listCompanies: [],
         listTreeNode: [],
         searchQuery: '',
+        listTreeNodeSearched: [],
       );
 
   HomeState copyWith({
@@ -35,6 +37,7 @@ class HomeState {
     List<CompanyEntity>? listCompanies,
     TypeStateEnum? typeAsset,
     List<TreeEntity>? listTreeNode,
+    List<TreeEntity>? listTreeNodeSearched,
     String? searchQuery,
   }) {
     return HomeState(
@@ -43,6 +46,7 @@ class HomeState {
       listCompanies: listCompanies ?? this.listCompanies,
       typeAsset: typeAsset ?? this.typeAsset,
       listTreeNode: listTreeNode ?? this.listTreeNode,
+      listTreeNodeSearched: listTreeNodeSearched ?? this.listTreeNodeSearched,
       searchQuery: searchQuery ?? this.searchQuery,
     );
   }

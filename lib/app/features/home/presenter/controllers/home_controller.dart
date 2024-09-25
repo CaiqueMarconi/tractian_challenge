@@ -4,6 +4,8 @@ import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
 
+import '../../domain/entities/asset_entity.dart';
+import '../../domain/entities/item_entity.dart';
 import '../../domain/helpers/params/get_assets_params.dart';
 import '../stores/home_store.dart';
 
@@ -20,6 +22,8 @@ class HomeController {
   List<CompanyEntity> get listCompanies => _homeStore.state.listCompanies;
   TypeStateEnum? get typeState => _homeStore.state.typeAsset;
   List<TreeEntity> get listTreeNode => _homeStore.state.listTreeNode;
+  List<TreeEntity> get listTreeNodeSearched =>
+      _homeStore.state.listTreeNodeSearched;
 
   // GETTERS STORES
   HomeStore get homeStore => _homeStore;
@@ -46,13 +50,87 @@ class HomeController {
     } else {
       _homeStore.setTypeState(typeStateSelected);
     }
-  }
-
-  void setSearchQuery(String query) {
-    _homeStore.setSearchQuery(query);
+    applyFilter();
   }
 
   Future<void> generateTreeNode(String companyId) async {
     await homeStore.loadDataTreeNode(companyId);
+  }
+
+  void applyFilter() {
+    final filteredTree = filterTreeEntities(
+      listTreeNodeSearched,
+      homeStore.state.searchQuery,
+      homeStore.state.typeAsset,
+    );
+    homeStore.setListTreeNode(filteredTree);
+  }
+
+  List<TreeEntity> filterTreeEntities(
+    List<TreeEntity> nodes,
+    String query,
+    TypeStateEnum? typeState,
+  ) {
+    return nodes
+        .map((node) => filterTreeEntity(node, query, typeState))
+        .where((node) => node != null)
+        .cast<TreeEntity>()
+        .toList();
+  }
+
+  TreeEntity? filterTreeEntity(
+    TreeEntity node,
+    String query,
+    TypeStateEnum? typeState,
+  ) {
+    final matchesQuery =
+        node.item.name.toLowerCase().contains(query.toLowerCase());
+    final matchesTypeState = typeState == null || node.item.status == typeState;
+
+    final filteredChildren = filterDynamicChildren(
+      node.children,
+      query,
+      typeState,
+    );
+
+    if ((matchesQuery && matchesTypeState) || filteredChildren.isNotEmpty) {
+      return node.copyWith(children: filteredChildren);
+    } else {
+      return null;
+    }
+  }
+
+  List<dynamic> filterDynamicChildren(
+    List<dynamic> children,
+    String query,
+    TypeStateEnum? typeState,
+  ) {
+    final filteredChildren = <dynamic>[];
+
+    for (var child in children) {
+      if (child is TreeEntity) {
+        final filteredChild = filterTreeEntity(child, query, typeState);
+        if (filteredChild != null) {
+          filteredChildren.add(filteredChild);
+        }
+      } else if (child is AssetEntity ||
+          child is LocationEntity ||
+          child is ItemEntity) {
+        final matchesQuery =
+            child.name.toLowerCase().contains(query.toLowerCase());
+        final matchesTypeState = typeState == null || child.status == typeState;
+
+        if (matchesQuery && matchesTypeState) {
+          filteredChildren.add(child);
+        }
+      }
+    }
+
+    return filteredChildren;
+  }
+
+  void setSearchQuery(String searchQuery) {
+    homeStore.setSearchQuery(searchQuery);
+    applyFilter();
   }
 }
