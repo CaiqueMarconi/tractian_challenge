@@ -1,3 +1,5 @@
+import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
+
 import '../../domain/entities/location_entity.dart';
 
 class LocationMapper {
@@ -6,6 +8,8 @@ class LocationMapper {
       id: map['id'],
       name: map['name'],
       parentId: map['parentId'],
+      locationChildren: [],
+      typeItem: TypeItemEnum.location,
     );
   }
 }

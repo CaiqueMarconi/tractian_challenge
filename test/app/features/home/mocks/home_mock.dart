@@ -17,7 +17,7 @@ class HomeMock {
     }
   ]);
 
-  static final getAssetsParam = GetAssetsParams(companyid: '');
+  static final getAssetsParam = GetAssetsParams(companyId: '');
 
   static final assetEntityMock = AssetEntity(
     id: 'id',

@@ -1,6 +1,6 @@
 class GetAssetsParams {
-  final String companyid;
+  final String companyId;
   GetAssetsParams({
-    required this.companyid,
+    required this.companyId,
   });
 }

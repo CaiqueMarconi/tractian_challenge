@@ -16,7 +16,7 @@ class GetAssetsDatasource implements IGetAssetsDatasource {
     final result = await _httpService.get(
       HttpParam(
         url:
-            'https://fake-api.tractian.com/companies/${params.companyid}/assets',
+            'https://fake-api.tractian.com/companies/${params.companyId}/assets',
       ),
     );
     final List<Map<String, dynamic>> typedListData =

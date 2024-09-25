@@ -9,6 +9,8 @@ import 'package:model/app/features/home/domain/entities/companie_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
 
+import '../widgets/node_title_widget.dart';
+import '../widgets/text_field_search_item_widget.dart';
 import '../widgets/type_state_custom_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,12 +30,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    widget.homeController.getLocation(widget.company.id);
+    widget.homeController.generateTreeNode(widget.company.id);
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ThemeManager.secondaryColor,
@@ -95,47 +98,7 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.symmetric(
                     vertical: size.height * 0.01,
                   ),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Buscar ativo ou local',
-                      hintStyle: TextStyle(
-                        color: ThemeManager.greyDark,
-                        fontFamily: FontManager.montserratMedium,
-                      ),
-                      filled: true,
-                      fillColor: ThemeManager.greyMedium,
-                      prefixIcon:
-                          Icon(Icons.search, color: ThemeManager.greyDark),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            size.height * 0.01,
-                          ),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            size.height * 0.01,
-                          ),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            size.height * 0.01,
-                          ),
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical: size.height * 0.010,
-                      ),
-                    ),
-                    style: TextStyle(color: ThemeManager.black),
-                  ),
+                  child: const TextFieldSearchItemWidget(),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -165,87 +128,44 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: widget.homeController.listLocation.length,
+                    itemCount: widget.homeController.listTreeNode.length,
                     itemBuilder: (context, index) {
-                      final location =
-                          widget.homeController.listLocation[index];
+                      final itemNode =
+                          widget.homeController.listTreeNode[index];
 
                       return Theme(
-                        data: Theme.of(context).copyWith(
-                          dividerColor: Colors.transparent,
-                        ),
+                        data: theme,
                         child: ListTileTheme(
-                          data: const ListTileThemeData(
-                            horizontalTitleGap: 0,
-                            minLeadingWidth: 0,
-                            minVerticalPadding: 0,
-                          ),
+                          data: theme.listTileTheme,
                           child: ExpansionTile(
                             controlAffinity: ListTileControlAffinity.leading,
                             tilePadding: EdgeInsets.zero,
                             visualDensity: VisualDensity.compact,
                             childrenPadding: EdgeInsets.zero,
                             trailing: const SizedBox.shrink(),
+                            leading: itemNode.item.sensorType != null
+                                ? const SizedBox(width: 24)
+                                : null,
                             dense: false,
-                            title: Row(
-                              children: [
-                                SizedBox(width: size.width * 0.02),
-                                SvgPicture.asset(ImagesManager.location),
-                                SizedBox(width: size.width * 0.02),
-                                Expanded(
-                                  child: Text(
-                                    location.name,
-                                    style: TextStyle(
-                                      fontFamily: FontManager.montserratMedium,
-                                      fontSize: size.height * 0.018,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            title: NodeTitleWidget(
+                              treeNode: itemNode,
                             ),
                             children: [
                               ListView.builder(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                itemCount: location.locationChildren?.length,
+                                itemCount: itemNode.children.length,
                                 itemBuilder: (context, index) {
-                                  final childLocation =
-                                      location.locationChildren?[index];
+                                  final childItem = itemNode.children[index];
                                   return Padding(
                                     padding: EdgeInsets.only(
                                       left: size.width * 0.04,
                                       bottom: size.height * 0.014,
                                     ),
-                                    child: ExpansionTile(
-                                      controlAffinity:
-                                          ListTileControlAffinity.leading,
-                                      tilePadding: const EdgeInsets.symmetric(
-                                          vertical: 0),
-                                      visualDensity: VisualDensity.compact,
-                                      childrenPadding: const EdgeInsets.only(
-                                        left: 16,
-                                        top: 6,
-                                        bottom: 6,
-                                      ),
-                                      dense: false,
-                                      title: Row(
-                                        children: [
-                                          SizedBox(width: size.width * 0.02),
-                                          SvgPicture.asset(
-                                            ImagesManager.location,
-                                          ),
-                                          SizedBox(width: size.width * 0.02),
-                                          Text(
-                                            childLocation!.name,
-                                            style: TextStyle(
-                                              fontFamily:
-                                                  FontManager.montserratMedium,
-                                              fontSize: size.height * 0.018,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
+                                    child: ListTileTheme(
+                                      data: theme.listTileTheme,
+                                      child: ExpansionTileCustomWidget(
+                                        item: childItem,
                                       ),
                                     ),
                                   );
@@ -262,6 +182,47 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class ExpansionTileCustomWidget extends StatelessWidget {
+  final dynamic item;
+  const ExpansionTileCustomWidget({
+    super.key,
+    this.item,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ExpansionTile(
+      controlAffinity: ListTileControlAffinity.leading,
+      tilePadding: const EdgeInsets.symmetric(vertical: 0),
+      visualDensity: VisualDensity.compact,
+      childrenPadding: const EdgeInsets.only(
+        left: 16,
+        top: 6,
+        bottom: 6,
+      ),
+      dense: false,
+      title: Row(
+        children: [
+          SizedBox(width: size.width * 0.02),
+          SvgPicture.asset(
+            ImagesManager.location,
+          ),
+          SizedBox(width: size.width * 0.02),
+          Text(
+            item.name,
+            style: TextStyle(
+              fontFamily: FontManager.montserratMedium,
+              fontSize: size.height * 0.018,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
     );
   }

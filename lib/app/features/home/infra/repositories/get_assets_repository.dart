@@ -14,6 +14,7 @@ class GetAssetsRepository implements IGetAssetsRepository {
       GetAssetsParams params) async {
     try {
       final response = await _datasource(params);
+
       return Right(response);
     } on IAppFailure catch (e) {
       return Left(e);

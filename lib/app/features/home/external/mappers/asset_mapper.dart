@@ -1,4 +1,5 @@
 import 'package:model/app/features/home/domain/entities/asset_entity.dart';
+import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
 
 class AssetMapper {
   static AssetEntity fromMap(Map<String, dynamic> map) {
@@ -11,6 +12,15 @@ class AssetMapper {
       listChildren: [],
       sensorType: map['sensorType'],
       locationId: map['locationId'],
+      typeItemEnum: _setTypeItem(map),
     );
+  }
+
+  static TypeItemEnum _setTypeItem(Map<String, dynamic> map) {
+    if (map['sensorType'] != null) {
+      return TypeItemEnum.component;
+    } else {
+      return TypeItemEnum.asset;
+    }
   }
 }

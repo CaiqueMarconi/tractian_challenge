@@ -27,6 +27,18 @@ class GetLocationUsecase implements IGetLocationUsecase {
         listLocation.where((element) => element.parentId == null).toList();
     final listLocationChildren =
         listLocation.where((element) => element.parentId != null).toList();
+
+    // adiciona location filhos a outros locations filho
+    for (var i = 0; i < listLocationChildren.length; i++) {
+      final childrens = listLocationChildren
+          .where((element) => element.parentId == listLocationChildren[i].id)
+          .toList();
+      listLocationChildren[i] = listLocationChildren[i].copyWith(
+        locationChildren: childrens,
+      );
+    }
+
+    // adiciona location filhos a outros locations pai
     for (var i = 0; i < listLocationParent.length; i++) {
       final childrens = listLocationChildren
           .where((element) => element.parentId == listLocationParent[i].id)

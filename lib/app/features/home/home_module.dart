@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:model/app/core/core_module.dart';
+import 'package:model/app/features/home/domain/usecases/generate_tree_node_usecase/generate_tree_node_usecase.dart';
 import 'package:model/app/features/home/domain/usecases/get_location_usecase/get_location_usecase.dart';
 import 'package:model/app/features/home/domain/usecases/get_location_usecase/i_get_location_usecase.dart';
 import 'package:model/app/features/home/external/datasources/get_location_datasource.dart';
@@ -12,6 +13,7 @@ import 'package:model/app/features/home/presenter/stores/home_store.dart';
 import 'domain/respositories/i_get_assets_repository.dart';
 import 'domain/respositories/i_get_companies_repository.dart';
 import 'domain/respositories/i_get_location_repository.dart';
+import 'domain/usecases/generate_tree_node_usecase/i_generate_tree_node_usecase.dart';
 import 'domain/usecases/get_assets_usecase/get_assets_usecase.dart';
 import 'domain/usecases/get_assets_usecase/i_get_assets_usecase.dart';
 import 'domain/usecases/get_companies_usecase/get_companies_usecase.dart';
@@ -54,6 +56,9 @@ class HomeModule extends Module {
     i.addLazySingleton<IGetCompaniesUsecase>(GetCompaniesUsecase.new);
     i.addLazySingleton<IGetCompaniesRepository>(GetCompaniesRepository.new);
     i.addLazySingleton<IGetCompaniesDatasource>(GetCompaniesDatasource.new);
+
+    // Generate tree node
+    i.addLazySingleton<IGenerateTreeNodeUsecase>(GenerateTreeNodeUsecase.new);
   }
 
   @override

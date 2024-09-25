@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
       //localizationsDelegates: AppLocalizations.localizationsDelegates,
       //supportedLocales: AppLocalizations.supportedLocales,
       title: 'model',
-      theme: ThemeManager.whichTheme(context),
+      theme: ThemeManager.themeLight,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
     );

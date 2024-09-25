@@ -1,6 +1,7 @@
 import 'package:model/app/features/home/domain/entities/asset_entity.dart';
 import 'package:model/app/features/home/domain/entities/companie_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
+import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
 
@@ -19,6 +20,7 @@ class HomeController {
   List<AssetEntity> get listAssets => _homeStore.state.listAssets;
   List<CompanyEntity> get listCompanies => _homeStore.state.listCompanies;
   TypeStateEnum? get typeState => _homeStore.state.typeAsset;
+  List<TreeEntity> get listTreeNode => _homeStore.state.listTreeNode;
 
   // GETTERS STORES
   HomeStore get homeStore => _homeStore;
@@ -29,9 +31,9 @@ class HomeController {
     );
   }
 
-  Future<void> getAssets() async {
+  Future<void> getAssets(String companyId) async {
     await _homeStore.getAssets(
-      GetAssetsParams(companyid: '662fd0ee639069143a8fc387'),
+      GetAssetsParams(companyId: companyId),
     );
   }
 
@@ -45,5 +47,9 @@ class HomeController {
     } else {
       _homeStore.setTypeState(typeStateSelected);
     }
+  }
+
+  Future<void> generateTreeNode(String companyId) async {
+    await homeStore.loadDataTreeNode(companyId);
   }
 }

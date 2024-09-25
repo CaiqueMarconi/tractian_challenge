@@ -19,6 +19,7 @@ class ThemeManager {
       primary: primaryColor,
       secondary: secondaryColor,
     ),
+    dividerColor: Colors.transparent,
     inputDecorationTheme: InputDecorationTheme(
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
@@ -26,6 +27,11 @@ class ThemeManager {
           width: 2.0,
         ),
       ),
+    ),
+    listTileTheme: const ListTileThemeData(
+      horizontalTitleGap: 0,
+      minLeadingWidth: 0,
+      minVerticalPadding: 0,
     ),
     appBarTheme: AppBarTheme(
       color: greyLight,
