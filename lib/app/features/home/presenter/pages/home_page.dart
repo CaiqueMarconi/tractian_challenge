@@ -142,9 +142,15 @@ class _HomePageState extends State<HomePage> {
                             controlAffinity: ListTileControlAffinity.leading,
                             tilePadding: EdgeInsets.zero,
                             visualDensity: VisualDensity.compact,
-                            childrenPadding: EdgeInsets.zero,
+                            childrenPadding: itemNode.children.isEmpty
+                                ? EdgeInsets.zero
+                                : const EdgeInsets.only(
+                                    left: 16,
+                                    top: 6,
+                                    bottom: 6,
+                                  ),
                             trailing: const SizedBox.shrink(),
-                            leading: itemNode.item.sensorType != null
+                            leading: itemNode.children.isEmpty
                                 ? const SizedBox(width: 24)
                                 : null,
                             dense: false,
@@ -202,6 +208,7 @@ class ExpansionTileCustomWidget extends StatelessWidget {
         top: 6,
         bottom: 6,
       ),
+      leading: item.children.isEmpty ? const SizedBox(width: 24) : null,
       dense: false,
       title: NodeTitleWidget(
         treeNode: item,
