@@ -28,7 +28,7 @@ class AssetMapper {
   static TypeStateEnum? _setTypeStatusItem(Map<String, dynamic> map) {
     if (map['status'] != null && map['status'] == 'operating') {
       return TypeStateEnum.sensor;
-    } else if (map['status'] != null && map['status'] == 'critic') {
+    } else if (map['status'] != null && map['status'] == 'alert') {
       return TypeStateEnum.critical;
     } else {
       return null;

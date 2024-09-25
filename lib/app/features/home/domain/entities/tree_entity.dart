@@ -1,5 +1,3 @@
-import 'package:model/app/features/home/domain/entities/item_entity.dart';
-
 import 'asset_entity.dart';
 
 class TreeEntity {
@@ -9,4 +7,14 @@ class TreeEntity {
     required this.item,
     required this.children,
   });
+
+  TreeEntity copyWith({
+    AssetEntity? item,
+    List<dynamic>? children,
+  }) {
+    return TreeEntity(
+      item: item ?? this.item,
+      children: children ?? this.children,
+    );
+  }
 }

@@ -39,8 +39,8 @@ class DataHelper {
       case TypeStateEnum.critical:
         return SvgPicture.asset(
           ImagesManager.critical,
-          width: 16,
-          height: 16,
+          width: 12,
+          height: 12,
         );
       case TypeStateEnum.sensor:
         return SvgPicture.asset(

@@ -7,26 +7,26 @@ import 'package:model/app/features/home/domain/usecases/generate_tree_node_useca
 class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
   @override
   List<TreeEntity> generate({
-    required List<AssetEntity> listAssets,
+    required List<TreeEntity> listAssets,
     required List<LocationEntity> listLocations,
   }) {
     List<TreeEntity> listTreeNode = [];
 
     final unappreciatedCompenents =
-        listAssets.where((element) => element.locationId == null).toList();
+        listAssets.where((element) => element.item.locationId == null).toList();
 
     if (unappreciatedCompenents.isNotEmpty) {
       for (var i = 0; i < unappreciatedCompenents.length; i++) {
         listTreeNode.add(
           TreeEntity(
             item: AssetEntity(
-              id: unappreciatedCompenents[i].id,
-              name: unappreciatedCompenents[i].name,
-              sensorType: unappreciatedCompenents[i].sensorType,
-              gatewayId: unappreciatedCompenents[i].gatewayId,
-              sensorId: unappreciatedCompenents[i].sensorId,
+              id: unappreciatedCompenents[i].item.id,
+              name: unappreciatedCompenents[i].item.name,
+              sensorType: unappreciatedCompenents[i].item.sensorType,
+              gatewayId: unappreciatedCompenents[i].item.gatewayId,
+              sensorId: unappreciatedCompenents[i].item.sensorId,
               typeItem: TypeItemEnum.component,
-              status: unappreciatedCompenents[i].status,
+              status: unappreciatedCompenents[i].item.status,
             ),
             children: [],
           ),
@@ -37,7 +37,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
     for (var i = 0; i < listLocations.length; i++) {
       final location = listLocations[i];
       final assets = listAssets
-          .where((element) => element.locationId == location.id)
+          .where((element) => element.item.locationId == location.id)
           .toList();
       if (assets.isNotEmpty) {
         final node = location.copyWith(locationChildren: assets);
@@ -55,7 +55,7 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
         for (var j = 0; j < location.locationChildren.length; j++) {
           final locationChild = location.locationChildren[j];
           final assets = listAssets
-              .where((element) => element.locationId == locationChild.id)
+              .where((element) => element.item.locationId == locationChild.id)
               .toList();
           if (assets.isNotEmpty) {
             final node = location.copyWith(locationChildren: assets);

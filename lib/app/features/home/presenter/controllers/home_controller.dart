@@ -1,4 +1,3 @@
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
 import 'package:model/app/features/home/domain/entities/companie_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
@@ -17,7 +16,7 @@ class HomeController {
 
   // GETTERS VARIABLES
   List<LocationEntity> get listLocation => _homeStore.state.listLocation;
-  List<AssetEntity> get listAssets => _homeStore.state.listAssets;
+  List<TreeEntity> get listAssets => _homeStore.state.listAssets;
   List<CompanyEntity> get listCompanies => _homeStore.state.listCompanies;
   TypeStateEnum? get typeState => _homeStore.state.typeAsset;
   List<TreeEntity> get listTreeNode => _homeStore.state.listTreeNode;

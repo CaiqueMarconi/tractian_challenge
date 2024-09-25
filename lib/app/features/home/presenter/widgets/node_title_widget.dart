@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
-
 import '../../../../core/theme/fonts/font_manager.dart';
 import '../../domain/helpers/data_helper/node_helper.dart';
 
@@ -37,7 +35,7 @@ class _NodeTitleWidgetState extends State<NodeTitleWidget> {
           ),
         ),
         SizedBox(width: size.width * 0.02),
-        if (widget.treeNode.item.typeItem == TypeItemEnum.component)
+        if (widget.treeNode.item.status != null)
           DataHelper.getIconStatusComponent(widget.treeNode.item.status!),
       ],
     );

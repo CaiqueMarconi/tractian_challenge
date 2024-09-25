@@ -1,4 +1,3 @@
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
 import 'package:model/app/features/home/domain/entities/companie_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
@@ -7,7 +6,7 @@ import '../../domain/helpers/enums/type_state_enum.dart';
 
 class HomeState {
   final List<LocationEntity> listLocation;
-  final List<AssetEntity> listAssets;
+  final List<TreeEntity> listAssets;
   final List<CompanyEntity> listCompanies;
   final TypeStateEnum? typeAsset;
   final List<TreeEntity> listTreeNode;
@@ -28,7 +27,7 @@ class HomeState {
 
   HomeState copyWith({
     List<LocationEntity>? listLocation,
-    List<AssetEntity>? listAssets,
+    List<TreeEntity>? listAssets,
     List<CompanyEntity>? listCompanies,
     TypeStateEnum? typeAsset,
     List<TreeEntity>? listTreeNode,
