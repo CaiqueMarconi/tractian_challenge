@@ -56,8 +56,22 @@ final class HomeStore extends Store<HomeState> {
   }
 
   // Change value of TypeAsset variable
-  void setTypeState(TypeStateEnum? typeState) {
-    update(state.copyWith(typeAsset: typeState));
+  void setSensorSelected() {
+    update(
+      state.copyWith(
+        typeSensorSelected: !state.typeSensorSelected,
+        typeAlertSelected: false,
+      ),
+    );
+  }
+
+  void setAlertSelected() {
+    update(
+      state.copyWith(
+        typeSensorSelected: false,
+        typeAlertSelected: !state.typeAlertSelected,
+      ),
+    );
   }
 
   // Generate Tree Node

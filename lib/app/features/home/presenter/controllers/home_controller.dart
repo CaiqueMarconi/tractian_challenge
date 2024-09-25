@@ -20,7 +20,8 @@ class HomeController {
   List<LocationEntity> get listLocation => _homeStore.state.listLocation;
   List<TreeEntity> get listAssets => _homeStore.state.listAssets;
   List<CompanyEntity> get listCompanies => _homeStore.state.listCompanies;
-  TypeStateEnum? get typeState => _homeStore.state.typeAsset;
+  bool get typeSensorSelected => _homeStore.state.typeSensorSelected;
+  bool get typeAlertSelected => _homeStore.state.typeAlertSelected;
   List<TreeEntity> get listTreeNode => _homeStore.state.listTreeNode;
   List<TreeEntity> get listTreeNodeSearched =>
       _homeStore.state.listTreeNodeSearched;
@@ -45,10 +46,10 @@ class HomeController {
   }
 
   void setTypeState(TypeStateEnum typeStateSelected) {
-    if (typeState == typeStateSelected) {
-      _homeStore.setTypeState(null);
+    if (TypeStateEnum.sensor == typeStateSelected) {
+      _homeStore.setSensorSelected();
     } else {
-      _homeStore.setTypeState(typeStateSelected);
+      _homeStore.setAlertSelected();
     }
     applyFilter();
   }
@@ -61,7 +62,6 @@ class HomeController {
     final filteredTree = filterTreeEntities(
       listTreeNodeSearched,
       homeStore.state.searchQuery,
-      homeStore.state.typeAsset,
     );
     homeStore.setListTreeNode(filteredTree);
   }
@@ -69,10 +69,9 @@ class HomeController {
   List<TreeEntity> filterTreeEntities(
     List<TreeEntity> nodes,
     String query,
-    TypeStateEnum? typeState,
   ) {
     return nodes
-        .map((node) => filterTreeEntity(node, query, typeState))
+        .map((node) => filterTreeEntity(node, query))
         .where((node) => node != null)
         .cast<TreeEntity>()
         .toList();
@@ -81,11 +80,17 @@ class HomeController {
   TreeEntity? filterTreeEntity(
     TreeEntity node,
     String query,
-    TypeStateEnum? typeState,
   ) {
     final matchesQuery =
         node.item.name.toLowerCase().contains(query.toLowerCase());
-    final matchesTypeState = typeState == null || node.item.status == typeState;
+    TypeStateEnum? typeState;
+
+    if (typeAlertSelected == true) {
+      typeState = TypeStateEnum.critical;
+    } else if (typeSensorSelected == true) {
+      typeState = TypeStateEnum.sensor;
+    }
+    final matchesTypeState = node.item.status == typeState;
 
     final filteredChildren = filterDynamicChildren(
       node.children,
@@ -109,7 +114,7 @@ class HomeController {
 
     for (var child in children) {
       if (child is TreeEntity) {
-        final filteredChild = filterTreeEntity(child, query, typeState);
+        final filteredChild = filterTreeEntity(child, query);
         if (filteredChild != null) {
           filteredChildren.add(filteredChild);
         }
@@ -131,6 +136,16 @@ class HomeController {
 
   void setSearchQuery(String searchQuery) {
     homeStore.setSearchQuery(searchQuery);
+    applyFilter();
+  }
+
+  void setSensorSelected() {
+    homeStore.setSensorSelected();
+    applyFilter();
+  }
+
+  void setAlertSelected() {
+    homeStore.setAlertSelected();
     applyFilter();
   }
 }

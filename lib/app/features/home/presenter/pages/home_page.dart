@@ -113,19 +113,15 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TypeStateCustomWidget(
-                        colorSelected: widget.homeController.typeState ==
-                            TypeStateEnum.sensor,
+                        colorSelected: widget.homeController.typeSensorSelected,
                         title: 'Sensor de energia',
-                        onTap: () => widget.homeController
-                            .setTypeState(TypeStateEnum.sensor),
+                        onTap: () => widget.homeController.setSensorSelected(),
                         imageString: ImagesManager.boltSensor,
                       ),
                       TypeStateCustomWidget(
-                        colorSelected: widget.homeController.typeState ==
-                            TypeStateEnum.critical,
+                        colorSelected: widget.homeController.typeAlertSelected,
                         title: 'Estado Crítico',
-                        onTap: () => widget.homeController
-                            .setTypeState(TypeStateEnum.critical),
+                        onTap: () => widget.homeController.setAlertSelected(),
                         imageString: ImagesManager.critical,
                       ),
                     ],
