@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../../../failures/app_failure/app_failure.dart';
 import 'helpers/params/http_param.dart';
 import 'helpers/responses/http_response.dart';
@@ -20,6 +22,10 @@ class HttpService implements IHttpService {
       );
 
       return HttpResponse(response: response.data);
+    } on SocketException catch (e) {
+      throw AppFailure(
+        message: e.toString(),
+      );
     } on TypeError catch (e) {
       throw AppFailure(
         message: e.toString(),
