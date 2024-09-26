@@ -2,10 +2,8 @@ import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
-import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
 import '../../../../core/shared/methods/error_notifier.dart';
 import '../../domain/entities/item_entity.dart';
-import '../../domain/helpers/params/get_assets_params.dart';
 import '../stores/home_store.dart';
 
 class HomeController {
@@ -16,8 +14,6 @@ class HomeController {
   }) : _homeStore = homeStore;
 
   // GETTERS VARIABLES
-  List<LocationEntity> get listLocation => _homeStore.state.listLocation;
-  List<TreeEntity> get listAssets => _homeStore.state.listAssets;
   List<CompanyEntity> get listCompanies => _homeStore.state.listCompanies;
   bool get typeSensorSelected => _homeStore.state.typeSensorSelected;
   bool get typeAlertSelected => _homeStore.state.typeAlertSelected;
@@ -27,19 +23,6 @@ class HomeController {
 
   // GETTERS STORES
   HomeStore get homeStore => _homeStore;
-
-  Future<void> getLocation(String companyId) async {
-    await _homeStore.getLocation(
-      GetLocationParams(companyId: companyId),
-    );
-    if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
-  }
-
-  Future<void> getAssets(String companyId) async {
-    await _homeStore.getAssets(
-      GetAssetsParams(companyId: companyId),
-    );
-  }
 
   Future<void> getCompanies() async {
     await _homeStore.getCompanies();
