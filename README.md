@@ -29,6 +29,8 @@ This project was developed as part of the Tractian challenge. It follows modern 
 
 - **Increased Test Coverage**: to 100% in all usecases and stores.
 
+- **Code Refactoring**: major code refactoring.
+
 ![Logo](./assets/print.png)
 
 
