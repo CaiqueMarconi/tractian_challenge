@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:model/app/core/theme/fonts/font_manager.dart';
 import 'package:model/app/core/theme/images/images.dart';
 import 'package:model/app/core/theme/theme_manager/theme.dart';
@@ -28,6 +29,7 @@ class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final intl = AppLocalizations.of(context)!;
     return Container(
       color: ThemeManager.primaryColor,
       child: SafeArea(
@@ -43,7 +45,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Bem Vindo,',
+                          intl.welcome,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: ThemeManager.white,
@@ -52,7 +54,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                           ),
                         ),
                         Text(
-                          'escolha a unidade desejada.',
+                          intl.info_home_header,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: ThemeManager.white,

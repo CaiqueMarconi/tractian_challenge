@@ -20,6 +20,7 @@ class TypeStateCustomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -28,7 +29,7 @@ class TypeStateCustomWidget extends StatelessWidget {
           horizontal: size.height * 0.01,
         ),
         decoration: BoxDecoration(
-          color: ThemeManager.greyLight,
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(
             size.height * 0.01,
           ),
@@ -51,7 +52,7 @@ class TypeStateCustomWidget extends StatelessWidget {
                 fontFamily: FontManager.montserratMedium,
                 color: colorSelected
                     ? ThemeManager.primaryColor
-                    : ThemeManager.greyDark,
+                    : theme.textTheme.bodySmall!.color,
               ),
             ),
           ],

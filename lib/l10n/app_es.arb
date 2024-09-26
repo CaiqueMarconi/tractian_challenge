@@ -1,0 +1,7 @@
+{
+    "welcome" : "Bienvenido,",
+    "info_home_header" : "elija la unidad deseada.",
+    "search_field" : "Buscar activo o ubicación",
+    "sensor_type": "Sensor de potencia",
+    "alert_type" : "Estado crítico"
+}

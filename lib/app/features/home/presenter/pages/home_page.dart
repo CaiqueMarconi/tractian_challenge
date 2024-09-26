@@ -6,7 +6,7 @@ import 'package:model/app/core/theme/images/images.dart';
 import 'package:model/app/core/theme/theme_manager/theme.dart';
 import 'package:model/app/features/home/domain/entities/company_entity.dart';
 import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/theme/fonts/font_manager.dart';
 import '../widgets/expansion_tile_custom_widget.dart';
 import '../widgets/text_field_search_item_widget.dart';
@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
+    final intl = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ThemeManager.secondaryColor,
@@ -87,13 +88,13 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       TypeStateCustomWidget(
                         colorSelected: widget.homeController.typeSensorSelected,
-                        title: 'Sensor de energia',
+                        title: intl.sensor_type,
                         onTap: () => widget.homeController.setSensorSelected(),
                         imageString: ImagesManager.boltSensor,
                       ),
                       TypeStateCustomWidget(
                         colorSelected: widget.homeController.typeAlertSelected,
-                        title: 'Estado Crítico',
+                        title: intl.alert_type,
                         onTap: () => widget.homeController.setAlertSelected(),
                         imageString: ImagesManager.critical,
                       ),

@@ -1,0 +1,7 @@
+{
+    "welcome" : "Welcome,",
+    "info_home_header" : "choose the desired drive.",
+    "search_field" : "Search asset or location",
+    "sensor_type": "Power sensor",
+    "alert_type" : "Critical status"
+}

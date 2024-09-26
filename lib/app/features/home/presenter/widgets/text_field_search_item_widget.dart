@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/theme/fonts/font_manager.dart';
 import '../../../../core/theme/theme_manager/theme.dart';
 
@@ -14,17 +14,19 @@ class TextFieldSearchItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final intl = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
     return TextFormField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        hintText: 'Buscar ativo ou local',
+        hintText: intl.search_field,
         hintStyle: TextStyle(
-          color: ThemeManager.greyDark,
+          color: theme.textTheme.bodySmall!.color,
           fontFamily: FontManager.montserratMedium,
         ),
         filled: true,
-        fillColor: ThemeManager.greyMedium,
-        prefixIcon: Icon(Icons.search, color: ThemeManager.greyDark),
+        fillColor: theme.colorScheme.surface,
+        prefixIcon: Icon(Icons.search, color: theme.textTheme.bodySmall!.color),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(

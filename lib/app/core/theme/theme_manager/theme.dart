@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class ThemeManager {
   static Color primaryColor = const Color(0xff346fec);
   static Color secondaryColor = const Color(0xff141c2c);
-
   static Color greyLight = const Color(0xffF4F4F4);
   static Color greyMedium = const Color.fromARGB(255, 238, 238, 238);
   static Color greyDark = const Color.fromARGB(255, 68, 68, 68);
@@ -19,9 +18,11 @@ class ThemeManager {
     colorScheme: ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
+      surface: greyMedium,
     ),
     dividerColor: Colors.transparent,
     inputDecorationTheme: InputDecorationTheme(
+      fillColor: greyMedium,
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: black,
@@ -55,14 +56,21 @@ class ThemeManager {
     colorScheme: ColorScheme.dark(
       primary: primaryColor,
       secondary: secondaryColor,
+      surface: black,
     ),
     inputDecorationTheme: InputDecorationTheme(
+      fillColor: Colors.black,
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: white,
           width: 2.0,
         ),
       ),
+    ),
+    listTileTheme: const ListTileThemeData(
+      horizontalTitleGap: 0,
+      minLeadingWidth: 0,
+      minVerticalPadding: 0,
     ),
     appBarTheme: AppBarTheme(
       color: white,

@@ -24,26 +24,20 @@ class HomeController {
   // GETTERS STORES
   HomeStore get homeStore => _homeStore;
 
+  // get the companies
   Future<void> getCompanies() async {
     await _homeStore.getCompanies();
     if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
   }
 
-  void setTypeState(TypeStateEnum typeStateSelected) {
-    if (TypeStateEnum.sensor == typeStateSelected) {
-      _homeStore.setSensorSelected();
-    } else {
-      _homeStore.setAlertSelected();
-    }
-    applyFilter();
-  }
-
+  // method that load the tree node
   Future<void> generateTreeNode(String companyId) async {
     await homeStore.generateTreeNode(companyId);
 
     if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
   }
 
+  // Applies the filter based on the search query and updates the home store with the filtered results.
   void applyFilter() {
     final filteredTree = filterTreeEntities(
       listTreeNodeSearched,
@@ -52,10 +46,12 @@ class HomeController {
     homeStore.setListTreeNode(filteredTree);
   }
 
+  // Clears the current data in the home store.
   void setEmptyData() {
     homeStore.setEmptyData();
   }
 
+  // Filters the list of tree entities based on the search query and returns the filtered list.
   List<TreeEntity> filterTreeEntities(
     List<TreeEntity> nodes,
     String query,
@@ -67,6 +63,8 @@ class HomeController {
         .toList();
   }
 
+  // Filters a single tree entity and its children based on the search query and type state.
+  // Returns the entity if it matches, otherwise returns null.
   TreeEntity? filterTreeEntity(
     TreeEntity node,
     String query,
@@ -98,6 +96,7 @@ class HomeController {
     }
   }
 
+  // Filters the dynamic children of a node (either tree entities or other entities) based on the query and type state.
   List<dynamic> filterDynamicChildren(
     List<dynamic> children,
     String query,
