@@ -35,3 +35,5 @@ This project was developed as part of the Tractian challenge. It follows modern 
 ![Video Preview](./assets/video-1.gif)  ![Video Preview](./assets/video-2.gif)
 
 
+# Link of Challenge
+[Visite o repo do desafio](https://github.com/tractian/challenges/blob/main/mobile/README.md)
