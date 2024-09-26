@@ -22,4 +22,4 @@ This project was developed as part of the Tractian challenge. It follows modern 
 - **Internationalization**: The app supports multiple languages, making it accessible to users in different regions.
 
 
-![Logo](./assets/prints.png)
+![Logo](./assets/print.png)
