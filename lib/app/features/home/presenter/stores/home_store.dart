@@ -71,26 +71,32 @@ final class HomeStore extends Store<HomeState> {
     );
   }
 
-  // Generate Tree Node
-  void generateTreeNode() {
-    final result = _generateTreeNodeUsecase.generate(
-      listAssets: state.listAssets,
-      listLocations: state.listLocation,
-    );
-    update(state.copyWith(
-      listTreeNode: result,
-      listTreeNodeSearched: result,
-    ));
+  // perform as requests of Assets and Location to Generate Tree Node
+  Future<void> generateTreeNode(String companyId) async {
+    try {
+      final result = await _generateTreeNodeUsecase.generate(
+        companyId: companyId,
+      );
+      update(state.copyWith(
+        listTreeNode: result,
+        listTreeNodeSearched: result,
+      ));
+    } catch (e) {
+      setError(e);
+    }
   }
 
+  // change the value of listTreeNode variable
   void setListTreeNode(List<TreeEntity> listTreeNode) {
     update(state.copyWith(listTreeNode: listTreeNode));
   }
 
+  // change the value of searchQuery variable
   void setSearchQuery(String query) {
     update(state.copyWith(searchQuery: query));
   }
 
+  // set how empty the variables that not necessary in home header page
   void setEmptyData() {
     update(state.emptyData());
   }

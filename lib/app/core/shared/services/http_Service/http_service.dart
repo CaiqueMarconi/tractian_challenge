@@ -20,6 +20,10 @@ class HttpService implements IHttpService {
       );
 
       return HttpResponse(response: response.data);
+    } on TypeError catch (e) {
+      throw AppFailure(
+        message: e.toString(),
+      );
     } on DioException catch (e) {
       throw AppFailure(
         message: e.error.toString(),

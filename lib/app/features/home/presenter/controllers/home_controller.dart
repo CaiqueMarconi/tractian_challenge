@@ -4,7 +4,6 @@ import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
 import '../../../../core/shared/methods/error_notifier.dart';
-import '../../domain/entities/asset_entity.dart';
 import '../../domain/entities/item_entity.dart';
 import '../../domain/helpers/params/get_assets_params.dart';
 import '../stores/home_store.dart';
@@ -56,11 +55,9 @@ class HomeController {
   }
 
   Future<void> generateTreeNode(String companyId) async {
-    await getLocation(companyId);
+    await homeStore.generateTreeNode(companyId);
+
     if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
-    await getAssets(companyId);
-    if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
-    homeStore.generateTreeNode();
   }
 
   void applyFilter() {
@@ -130,7 +127,7 @@ class HomeController {
         if (filteredChild != null) {
           filteredChildren.add(filteredChild);
         }
-      } else if (child is AssetEntity ||
+      } else if (child is ItemEntity ||
           child is LocationEntity ||
           child is ItemEntity) {
         final matchesQuery =

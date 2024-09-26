@@ -2,15 +2,30 @@ import 'package:model/app/features/home/domain/entities/item_entity.dart';
 import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
+import 'package:model/app/features/home/domain/helpers/params/get_assets_params.dart';
 import 'package:model/app/features/home/domain/usecases/generate_tree_node_usecase/i_generate_tree_node_usecase.dart';
+import 'package:model/app/features/home/domain/usecases/get_assets_usecase/i_get_assets_usecase.dart';
+import 'package:model/app/features/home/domain/usecases/get_location_usecase/i_get_location_usecase.dart';
+
+import '../../helpers/params/get_location_params.dart';
 
 class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
+  final IGetAssetsUsecase getAssetsUsecase;
+  final IGetLocationUsecase getLocationUsecase;
+
+  const GenerateTreeNodeUsecase(
+    this.getAssetsUsecase,
+    this.getLocationUsecase,
+  );
+
   @override
-  List<TreeEntity> generate({
-    required List<TreeEntity> listAssets,
-    required List<LocationEntity> listLocations,
-  }) {
+  Future<List<TreeEntity>> generate({
+    required String companyId,
+  }) async {
     List<TreeEntity> listTreeNode = [];
+
+    final listLocations = await _getListlLocation(companyId);
+    final listAssets = await _getListAssets(companyId);
 
 // Filter unappreciated components (assets without locationId)
     final unappreciatedCompenents =
@@ -98,5 +113,25 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
       }
     }
     return listTreeNode;
+  }
+
+  Future<List<TreeEntity>> _getListAssets(String companyId) async {
+    final getAssets = await getAssetsUsecase.call(
+      GetAssetsParams(companyId: companyId),
+    );
+    return getAssets.fold(
+      (failure) => throw failure,
+      (getAssets) => getAssets,
+    );
+  }
+
+  Future<List<LocationEntity>> _getListlLocation(String companyId) async {
+    final getLocation = await getLocationUsecase.call(
+      GetLocationParams(companyId: companyId),
+    );
+    return getLocation.fold(
+      (failure) => throw failure,
+      (locationList) => locationList,
+    );
   }
 }
