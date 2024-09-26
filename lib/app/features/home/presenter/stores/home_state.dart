@@ -11,7 +11,6 @@ class HomeState {
   final String searchQuery;
   final bool typeAlertSelected;
   final bool typeSensorSelected;
-  final bool loadingDataTreeNode;
   HomeState({
     required this.listLocation,
     required this.listAssets,
@@ -21,7 +20,6 @@ class HomeState {
     required this.searchQuery,
     required this.typeAlertSelected,
     required this.typeSensorSelected,
-    required this.loadingDataTreeNode,
   });
 
   factory HomeState.init() => HomeState(
@@ -33,7 +31,6 @@ class HomeState {
         listTreeNodeSearched: [],
         typeAlertSelected: false,
         typeSensorSelected: false,
-        loadingDataTreeNode: false,
       );
 
   HomeState copyWith({
@@ -45,7 +42,6 @@ class HomeState {
     String? searchQuery,
     bool? typeAlertSelected,
     bool? typeSensorSelected,
-    bool? loadingDataTreeNode,
   }) {
     return HomeState(
       listLocation: listLocation ?? this.listLocation,
@@ -56,7 +52,19 @@ class HomeState {
       searchQuery: searchQuery ?? this.searchQuery,
       typeAlertSelected: typeAlertSelected ?? this.typeAlertSelected,
       typeSensorSelected: typeSensorSelected ?? this.typeSensorSelected,
-      loadingDataTreeNode: loadingDataTreeNode ?? this.loadingDataTreeNode,
+    );
+  }
+
+  HomeState emptyData() {
+    return copyWith(
+      listLocation: [],
+      listAssets: [],
+      listCompanies: listCompanies,
+      listTreeNode: [],
+      listTreeNodeSearched: [],
+      searchQuery: '',
+      typeAlertSelected: false,
+      typeSensorSelected: false,
     );
   }
 }

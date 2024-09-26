@@ -61,6 +61,7 @@ final class HomeStore extends Store<HomeState> {
     );
   }
 
+  // Change value of TypeAsset variable
   void setAlertSelected() {
     update(
       state.copyWith(
@@ -76,34 +77,21 @@ final class HomeStore extends Store<HomeState> {
       listAssets: state.listAssets,
       listLocations: state.listLocation,
     );
-    update(state.copyWith(listTreeNode: result));
-  }
-
-  Future<void> loadDataTreeNode(String companyId) async {
-    setLoading(true);
-
-    await getLocation(GetLocationParams(companyId: companyId));
-    await getAssets(GetAssetsParams(companyId: companyId));
-
-    generateTreeNode();
-
-    setLoading(false);
+    update(state.copyWith(
+      listTreeNode: result,
+      listTreeNodeSearched: result,
+    ));
   }
 
   void setListTreeNode(List<TreeEntity> listTreeNode) {
-    update(
-      state.copyWith(
-        listTreeNode: listTreeNode,
-        listTreeNodeSearched: listTreeNode,
-      ),
-    );
+    update(state.copyWith(listTreeNode: listTreeNode));
   }
 
   void setSearchQuery(String query) {
     update(state.copyWith(searchQuery: query));
   }
 
-  void setLoadingInitDataTreeNode(bool loading) {
-    update(state.copyWith(loadingDataTreeNode: loading));
+  void setEmptyData() {
+    update(state.emptyData());
   }
 }

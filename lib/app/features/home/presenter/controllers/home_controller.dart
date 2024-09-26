@@ -3,7 +3,7 @@ import 'package:model/app/features/home/domain/entities/location_entity.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
-
+import '../../../../core/shared/methods/error_notifier.dart';
 import '../../domain/entities/asset_entity.dart';
 import '../../domain/entities/item_entity.dart';
 import '../../domain/helpers/params/get_assets_params.dart';
@@ -33,6 +33,7 @@ class HomeController {
     await _homeStore.getLocation(
       GetLocationParams(companyId: companyId),
     );
+    if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
   }
 
   Future<void> getAssets(String companyId) async {
@@ -55,7 +56,11 @@ class HomeController {
   }
 
   Future<void> generateTreeNode(String companyId) async {
-    await homeStore.loadDataTreeNode(companyId);
+    await getLocation(companyId);
+    if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
+    await getAssets(companyId);
+    if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
+    homeStore.generateTreeNode();
   }
 
   void applyFilter() {
@@ -66,8 +71,8 @@ class HomeController {
     homeStore.setListTreeNode(filteredTree);
   }
 
-  void setListTreeNodeEmpty() {
-    homeStore.setListTreeNode([]);
+  void setEmptyData() {
+    homeStore.setEmptyData();
   }
 
   List<TreeEntity> filterTreeEntities(

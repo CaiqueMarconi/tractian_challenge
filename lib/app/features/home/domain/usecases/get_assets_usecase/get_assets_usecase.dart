@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:model/app/features/home/domain/entities/tree_entity.dart';
-import 'package:model/app/features/home/external/mappers/tree_mapper.dart';
 import '../../../../../core/failures/app_failure/i_app_failure.dart';
 import '../../helpers/params/get_assets_params.dart';
 import '../../respositories/i_get_assets_repository.dart';
@@ -21,9 +19,7 @@ class GetAssetsUsecase implements IGetAssetsUsecase {
 
     if (result is IAppFailure) return Left(result);
 
-    final listMap = result as List<Map<String, dynamic>>;
-
-    final listAssets = await compute(computeData, listMap);
+    final listAssets = result as List<TreeEntity>;
 
     // Lista de componentes (ativos com sensorType)
     final listComponents =
@@ -74,8 +70,4 @@ class GetAssetsUsecase implements IGetAssetsUsecase {
 
     return Right(listAssetsParent);
   }
-}
-
-List<TreeEntity> computeData(List<Map<String, dynamic>> listMap) {
-  return listMap.map((e) => TreeMapper.fromMap(e)).toList();
 }

@@ -12,14 +12,18 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
   }) {
     List<TreeEntity> listTreeNode = [];
 
+// Filter unappreciated components (assets without locationId)
     final unappreciatedCompenents =
         listAssets.where((element) => element.item.locationId == null).toList();
 
+// Loop through all locations to create tree structure
     for (var i = 0; i < listLocations.length; i++) {
       final location = listLocations[i];
+      // Filter assets that belong to the current location
       final assets = listAssets
           .where((element) => element.item.locationId == location.id)
           .toList();
+      // If the location has associated assets
       if (assets.isNotEmpty) {
         final node = location.copyWith(locationChildren: assets);
         listTreeNode.add(
@@ -32,12 +36,17 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
             children: node.locationChildren,
           ),
         );
-      } else if (assets.isEmpty && location.locationChildren.isNotEmpty) {
+      }
+      // If the location has no assets but has location children
+      else if (assets.isEmpty && location.locationChildren.isNotEmpty) {
+        // Loop through each child location
         for (var j = 0; j < location.locationChildren.length; j++) {
           final locationChild = location.locationChildren[j];
+          // Filter assets belonging to the current child location
           final assets = listAssets
               .where((element) => element.item.locationId == locationChild.id)
               .toList();
+          // If child location has assets
           if (assets.isNotEmpty) {
             final node = location.copyWith(locationChildren: assets);
             listTreeNode.add(
@@ -52,7 +61,9 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
             );
           }
         }
-      } else {
+      }
+      // If the location has no assets and no children, add it as a node with empty children
+      else {
         listTreeNode.add(
           TreeEntity(
             item: ItemEntity(
@@ -65,8 +76,10 @@ class GenerateTreeNodeUsecase implements IGenerateTreeNodeUsecase {
         );
       }
     }
-    // add components unappreciated in the tree
+
+// Add unappreciated components (without location) to the tree
     if (unappreciatedCompenents.isNotEmpty) {
+      // Loop through unappreciated components
       for (var i = 0; i < unappreciatedCompenents.length; i++) {
         listTreeNode.add(
           TreeEntity(
