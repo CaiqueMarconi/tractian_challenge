@@ -16,7 +16,7 @@ void main() {
   final usecase = GetLocationUsecase(repository);
   test('Get location usecase ...', () async {
     when(() => repository.call(HomeMock.getLocationParamMock))
-        .thenAnswer((invocation) async => const Right([]));
+        .thenAnswer((invocation) async => Right(HomeMock.listLocation));
     final result = await usecase.call(HomeMock.getLocationParamMock);
     expect(result.fold((l) => l, (r) => r), isA<List<LocationEntity>>());
   });

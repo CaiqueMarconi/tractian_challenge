@@ -1,6 +1,8 @@
 import 'package:model/app/core/shared/services/http_Service/helpers/params/http_param.dart';
 import 'package:model/app/core/shared/services/http_Service/helpers/responses/http_response.dart';
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
+import 'package:model/app/features/home/domain/entities/item_entity.dart';
+import 'package:model/app/features/home/domain/entities/location_entity.dart';
+import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_assets_params.dart';
 import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
@@ -20,10 +22,88 @@ class HomeMock {
 
   static final getAssetsParam = GetAssetsParams(companyId: '');
 
-  static final assetEntityMock = AssetEntity(
-    id: 'id',
+  static final assetEntityMock = ItemEntity(
+    id: '3',
     name: 'name',
     gatewayId: 'gatewayId',
     typeItem: TypeItemEnum.asset,
+    parentId: '0',
   );
+
+  static final treeEntityMock = TreeEntity(
+    item: ItemEntity(
+      id: '0',
+      name: 'name',
+      typeItem: TypeItemEnum.location,
+    ),
+    children: [assetEntityMock],
+  );
+
+  static final List<TreeEntity> listTreeMock = [
+    treeEntityMock,
+    TreeEntity(
+      item: ItemEntity(
+        id: '1',
+        name: 'name',
+        typeItem: TypeItemEnum.asset,
+        parentId: '0',
+      ),
+      children: [
+        ItemEntity(
+          id: 'id',
+          name: 'name',
+          gatewayId: 'gatewayId',
+          typeItem: TypeItemEnum.asset,
+          parentId: '1',
+        )
+      ],
+    ),
+    TreeEntity(
+      item: ItemEntity(
+        id: '123',
+        name: 'name',
+        typeItem: TypeItemEnum.component,
+        sensorType: 'sensorType',
+      ),
+      children: [],
+    ),
+    TreeEntity(
+      item: ItemEntity(
+        id: '2',
+        name: 'name',
+        typeItem: TypeItemEnum.location,
+        locationId: '1',
+      ),
+      children: [
+        ItemEntity(
+          id: '1234',
+          name: 'name',
+          typeItem: TypeItemEnum.location,
+          locationId: '2',
+        )
+      ],
+    ),
+  ];
+
+  static final List<LocationEntity> listLocation = [
+    LocationEntity(
+      id: '1',
+      name: 'name',
+      locationChildren: [],
+      typeItem: TypeItemEnum.location,
+    ),
+    LocationEntity(
+      id: '2',
+      name: 'name',
+      locationChildren: [],
+      typeItem: TypeItemEnum.location,
+      parentId: '1',
+    ),
+    LocationEntity(
+      id: '3',
+      name: 'name',
+      locationChildren: [],
+      typeItem: TypeItemEnum.location,
+    ),
+  ];
 }

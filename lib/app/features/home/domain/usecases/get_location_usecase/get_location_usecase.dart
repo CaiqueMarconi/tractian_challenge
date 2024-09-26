@@ -21,12 +21,15 @@ class GetLocationUsecase implements IGetLocationUsecase {
 
     final listLocation = result as List<LocationEntity>;
 
+    // get location father another locations
     final listLocationParent =
         listLocation.where((element) => element.parentId == null).toList();
+
+    // get location child another locations
     final listLocationChildren =
         listLocation.where((element) => element.parentId != null).toList();
 
-    // adiciona location filhos a outros locations filho
+    // add child locations to another child locations
     for (var i = 0; i < listLocationChildren.length; i++) {
       final childrens = listLocationChildren
           .where((element) => element.parentId == listLocationChildren[i].id)
@@ -36,7 +39,7 @@ class GetLocationUsecase implements IGetLocationUsecase {
       );
     }
 
-    // adiciona location filhos a outros locations pai
+    // add child locations to other parent locations
     for (var i = 0; i < listLocationParent.length; i++) {
       final childrens = listLocationChildren
           .where((element) => element.parentId == listLocationParent[i].id)

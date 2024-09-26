@@ -21,19 +21,19 @@ class GetAssetsUsecase implements IGetAssetsUsecase {
 
     final listAssets = result as List<TreeEntity>;
 
-    // Lista de componentes (ativos com sensorType)
+    // List of components (assets with sensorType)
     final listComponents =
         listAssets.where((element) => element.item.sensorType != null).toList();
 
-    // Lista de ativos com uma localização como pai (locationId != null)
+    // List of assets with a location as a parent (locationId != null)
     final listAssetsParent =
         listAssets.where((element) => element.item.locationId != null).toList();
 
-    // Lista de ativos filhos de outros ativos (parentId != null e sem sensorId)
+    // List of assets that are children of other assets (parentId != null and no sensorId)
     final listAssetsChildren =
         listAssets.where((element) => element.item.parentId != null).toList();
 
-    // Adicionar filhos (ativos) aos ativos pais
+    // Add children (assets) to parent assets
     for (var i = 0; i < listAssetsChildren.length; i++) {
       final children = listAssetsChildren
           .where((element) =>
@@ -46,21 +46,20 @@ class GetAssetsUsecase implements IGetAssetsUsecase {
       );
     }
 
-    // Adicionar filhos (ativos) aos ativos pais
     for (var i = 0; i < listAssetsParent.length; i++) {
-      // Encontrar filhos para este ativo
+      // Find children for this asset
       final children = listAssetsChildren
           .where(
               (element) => element.item.parentId == listAssetsParent[i].item.id)
           .toList();
 
-      // Atualizar o ativo pai com sua lista de filhos
+      // Update the parent asset with its list of children
       listAssetsParent[i] = listAssetsParent[i].copyWith(
         children: children,
       );
     }
 
-    // adiciona os componentes que não são apreciados em nenhum lugar da arvore
+    // adds components that are not liked anywhere in the tree
     for (var i = 0; i < listComponents.length; i++) {
       if (listAssets[i].item.parentId == null &&
           listAssets[i].item.locationId == null) {

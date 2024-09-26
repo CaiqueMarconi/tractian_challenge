@@ -5,4 +5,5 @@ class ImagesManager {
   static const critical = 'assets/images/circle_critical.svg';
   static const asset = 'assets/images/active.svg';
   static const component = 'assets/images/component.svg';
+  static const emptyData = 'assets/images/empty_data.png';
 }

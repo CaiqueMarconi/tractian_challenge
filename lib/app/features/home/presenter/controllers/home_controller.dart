@@ -26,6 +26,7 @@ class HomeController {
 
   Future<void> getCompanies() async {
     await _homeStore.getCompanies();
+    if (ErrorNotifier.displayErrorIfExists(store: homeStore)) return;
   }
 
   void setTypeState(TypeStateEnum typeStateSelected) {

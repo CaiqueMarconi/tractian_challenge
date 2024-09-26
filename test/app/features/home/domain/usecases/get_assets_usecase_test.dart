@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:model/app/core/failures/app_failure/i_app_failure.dart';
-import 'package:model/app/features/home/domain/entities/asset_entity.dart';
+import 'package:model/app/features/home/domain/entities/tree_entity.dart';
 import 'package:model/app/features/home/domain/respositories/i_get_assets_repository.dart';
 import 'package:model/app/features/home/domain/usecases/get_assets_usecase/get_assets_usecase.dart';
 
@@ -16,9 +16,9 @@ void main() {
   final usecase = GetAssetsUsecase(repository);
   test('Get assets usecase ...', () async {
     when(() => repository.call(HomeMock.getAssetsParam))
-        .thenAnswer((invocation) async => const Right([]));
+        .thenAnswer((invocation) async => Right(HomeMock.listTreeMock));
     final result = await usecase.call(HomeMock.getAssetsParam);
-    expect(result.fold((l) => l, (r) => r), isA<List<AssetEntity>>());
+    expect(result.fold((l) => l, (r) => r), isA<List<TreeEntity>>());
   });
 
   test('Get assets failure...', () async {
