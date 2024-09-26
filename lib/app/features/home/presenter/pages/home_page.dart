@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:model/app/core/theme/images/images.dart';
-import 'package:model/app/core/theme/theme_manager/theme.dart';
-import 'package:model/app/features/home/domain/entities/company_entity.dart';
-import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
+import 'package:tractian_challenge/app/core/theme/images/images.dart';
+import 'package:tractian_challenge/app/core/theme/theme_manager/theme.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/company_entity.dart';
+import 'package:tractian_challenge/app/features/home/presenter/controllers/home_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/theme/fonts/font_manager.dart';
+import '../widgets/divider_item_widget.dart';
 import '../widgets/expansion_tile_custom_widget.dart';
+import '../widgets/list_tile_custom_widget.dart';
 import '../widgets/text_field_search_item_widget.dart';
 import '../widgets/title_company_home_widget.dart';
 import '../widgets/type_state_custom_widget.dart';
@@ -143,16 +145,26 @@ class _HomePageState extends State<HomePage> {
                             itemBuilder: (context, index) {
                               final itemNode =
                                   widget.homeController.listTreeNode[index];
-
-                              return Theme(
-                                data: theme,
-                                child: ListTileTheme(
-                                  data: theme.listTileTheme,
-                                  child: ExpansionTileCustomWidget(
-                                    item: itemNode,
+                              if (itemNode.children.isEmpty) {
+                                return ListTileCustomWidget(
+                                  node: itemNode,
+                                );
+                              } else {
+                                return Theme(
+                                  data: theme,
+                                  child: ListTileTheme(
+                                    data: theme.listTileTheme,
+                                    child: Column(
+                                      children: [
+                                        ExpansionTileCustomWidget(
+                                          item: itemNode,
+                                        ),
+                                        const DiverItemWidget()
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
+                                );
+                              }
                             },
                           ),
                         ),

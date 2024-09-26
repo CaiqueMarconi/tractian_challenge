@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "model" "\0"
+            VALUE "FileDescription", "tractian_challenge" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "model" "\0"
+            VALUE "InternalName", "tractian_challenge" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "model.exe" "\0"
-            VALUE "ProductName", "model" "\0"
+            VALUE "OriginalFilename", "tractian_challenge.exe" "\0"
+            VALUE "ProductName", "tractian_challenge" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

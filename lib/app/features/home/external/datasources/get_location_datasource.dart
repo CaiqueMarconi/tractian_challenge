@@ -1,5 +1,5 @@
-import 'package:model/app/core/shared/services/http_Service/helpers/params/http_param.dart';
-import 'package:model/app/core/shared/services/http_Service/i_http_service.dart';
+import 'package:tractian_challenge/app/core/shared/services/http_Service/helpers/params/http_param.dart';
+import 'package:tractian_challenge/app/core/shared/services/http_Service/i_http_service.dart';
 
 import '../../domain/helpers/params/get_location_params.dart';
 import '../../infra/datasources/i_get_location_datasource.dart';

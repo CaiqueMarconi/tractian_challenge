@@ -1,5 +1,5 @@
-import 'package:model/app/features/home/domain/entities/company_entity.dart';
-import 'package:model/app/features/home/domain/entities/tree_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/company_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/tree_entity.dart';
 
 class HomeState {
   final List<CompanyEntity> listCompanies;

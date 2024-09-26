@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:model/app/features/home/domain/entities/tree_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/tree_entity.dart';
 import '../../../../core/theme/fonts/font_manager.dart';
 import '../../domain/helpers/data_helper/node_helper.dart';
 

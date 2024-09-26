@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:model/app/features/home/domain/entities/location_entity.dart';
-import 'package:model/app/features/home/domain/helpers/params/get_location_params.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/location_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/params/get_location_params.dart';
 import '../../../../../core/failures/app_failure/i_app_failure.dart';
 import '../../respositories/i_get_location_repository.dart';
 import 'i_get_location_usecase.dart';

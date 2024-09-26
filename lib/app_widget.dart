@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      title: 'model',
+      title: 'tractian_challenge',
       theme: ThemeManager.whichTheme(context),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,

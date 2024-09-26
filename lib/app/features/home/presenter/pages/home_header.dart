@@ -3,10 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:model/app/core/theme/fonts/font_manager.dart';
-import 'package:model/app/core/theme/images/images.dart';
-import 'package:model/app/core/theme/theme_manager/theme.dart';
-import 'package:model/app/features/home/presenter/controllers/home_controller.dart';
+import 'package:tractian_challenge/app/core/theme/fonts/font_manager.dart';
+import 'package:tractian_challenge/app/core/theme/images/images.dart';
+import 'package:tractian_challenge/app/core/theme/theme_manager/theme.dart';
+import 'package:tractian_challenge/app/features/home/presenter/controllers/home_controller.dart';
 
 class HomeHeader extends StatefulWidget {
   final HomeController homeController;

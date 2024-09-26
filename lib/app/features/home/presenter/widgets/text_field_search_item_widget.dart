@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/theme/fonts/font_manager.dart';
-import '../../../../core/theme/theme_manager/theme.dart';
 
 class TextFieldSearchItemWidget extends StatelessWidget {
   final ValueChanged<String>? onChanged;
@@ -55,7 +54,7 @@ class TextFieldSearchItemWidget extends StatelessWidget {
           vertical: size.height * 0.010,
         ),
       ),
-      style: TextStyle(color: ThemeManager.black),
+      style: theme.textTheme.bodySmall!.copyWith(fontSize: size.height * 0.018),
     );
   }
 }

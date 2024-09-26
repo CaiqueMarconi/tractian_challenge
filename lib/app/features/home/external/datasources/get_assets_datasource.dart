@@ -1,4 +1,4 @@
-import 'package:model/app/core/shared/services/http_Service/i_http_service.dart';
+import 'package:tractian_challenge/app/core/shared/services/http_Service/i_http_service.dart';
 
 import '../../../../core/shared/services/http_Service/helpers/params/http_param.dart';
 import '../../domain/helpers/params/get_assets_params.dart';

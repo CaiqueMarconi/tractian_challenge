@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:model/app/features/home/domain/entities/tree_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/tree_entity.dart';
 import '../../../../../core/failures/app_failure/i_app_failure.dart';
 import '../../helpers/params/get_assets_params.dart';
 import '../../respositories/i_get_assets_repository.dart';

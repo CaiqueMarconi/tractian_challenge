@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'list_tile_custom_widget.dart';
 import 'node_title_widget.dart';
 
 class ExpansionTileCustomWidget extends StatelessWidget {
@@ -15,7 +13,7 @@ class ExpansionTileCustomWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return ExpansionTile(
       controlAffinity: ListTileControlAffinity.leading,
-      tilePadding: const EdgeInsets.symmetric(vertical: 0),
+      tilePadding: EdgeInsets.zero,
       visualDensity: VisualDensity.compact,
       childrenPadding: EdgeInsets.only(
         left: size.width * 0.04,
@@ -24,6 +22,14 @@ class ExpansionTileCustomWidget extends StatelessWidget {
       ),
       leading: item.children.isEmpty ? const SizedBox(width: 24) : null,
       dense: false,
+      collapsedShape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(0)),
+        side: BorderSide(color: Colors.transparent),
+      ),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(0)),
+        side: BorderSide(color: Colors.transparent),
+      ),
       title: NodeTitleWidget(
         treeNode: item,
       ),
@@ -34,13 +40,9 @@ class ExpansionTileCustomWidget extends StatelessWidget {
           itemCount: item.children.length,
           itemBuilder: (context, index) {
             final childItem = item;
-            return childItem.children.isEmpty
-                ? ListTileCustomWidget(
-                    node: childItem.children[index],
-                  )
-                : ExpansionTileCustomWidget(
-                    item: childItem.children[index],
-                  );
+            return ExpansionTileCustomWidget(
+              item: childItem.children[index],
+            );
           },
         ),
       ],

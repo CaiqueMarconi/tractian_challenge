@@ -1,6 +1,6 @@
-import 'package:model/app/features/home/domain/entities/item_entity.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/item_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_item_enum.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_state_enum.dart';
 
 class ItemMapper {
   static ItemEntity fromMap(Map<String, dynamic> map) {

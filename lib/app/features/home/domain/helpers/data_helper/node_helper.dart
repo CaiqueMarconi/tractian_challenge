@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:model/app/core/theme/images/images.dart';
-import 'package:model/app/core/theme/theme_manager/theme.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
+import 'package:tractian_challenge/app/core/theme/images/images.dart';
+import 'package:tractian_challenge/app/core/theme/theme_manager/theme.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_item_enum.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_state_enum.dart';
 
 class DataHelper {
   static Widget getIconItem(TypeItemEnum typeItem) {

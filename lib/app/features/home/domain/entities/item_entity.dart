@@ -1,5 +1,5 @@
-import 'package:model/app/features/home/domain/helpers/enums/type_item_enum.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_item_enum.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_state_enum.dart';
 
 class ItemEntity {
   final String id;

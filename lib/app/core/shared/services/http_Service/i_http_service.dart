@@ -1,4 +1,4 @@
-import 'package:model/app/core/shared/services/http_Service/helpers/params/http_param.dart';
+import 'package:tractian_challenge/app/core/shared/services/http_Service/helpers/params/http_param.dart';
 
 import 'helpers/responses/http_response.dart';
 

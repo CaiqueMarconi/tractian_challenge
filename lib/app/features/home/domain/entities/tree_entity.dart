@@ -1,4 +1,4 @@
-import 'package:model/app/features/home/domain/entities/item_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/item_entity.dart';
 
 class TreeEntity {
   final ItemEntity item;

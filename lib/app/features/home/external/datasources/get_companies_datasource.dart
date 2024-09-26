@@ -1,6 +1,6 @@
-import 'package:model/app/core/shared/services/http_Service/helpers/params/http_param.dart';
-import 'package:model/app/core/shared/services/http_Service/i_http_service.dart';
-import 'package:model/app/features/home/external/mappers/company_mapper.dart';
+import 'package:tractian_challenge/app/core/shared/services/http_Service/helpers/params/http_param.dart';
+import 'package:tractian_challenge/app/core/shared/services/http_Service/i_http_service.dart';
+import 'package:tractian_challenge/app/features/home/external/mappers/company_mapper.dart';
 
 import '../../domain/entities/company_entity.dart';
 import '../../infra/datasources/i_get_companies_datasource.dart';

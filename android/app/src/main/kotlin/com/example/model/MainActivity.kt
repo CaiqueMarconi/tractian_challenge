@@ -1,4 +1,4 @@
-package com.example.model
+package com.example.tractian_challenge
 
 import io.flutter.embedding.android.FlutterActivity
 

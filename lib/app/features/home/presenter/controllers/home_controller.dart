@@ -1,7 +1,7 @@
-import 'package:model/app/features/home/domain/entities/company_entity.dart';
-import 'package:model/app/features/home/domain/entities/location_entity.dart';
-import 'package:model/app/features/home/domain/entities/tree_entity.dart';
-import 'package:model/app/features/home/domain/helpers/enums/type_state_enum.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/company_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/location_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/tree_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/helpers/enums/type_state_enum.dart';
 import '../../../../core/shared/methods/error_notifier.dart';
 import '../../domain/entities/item_entity.dart';
 import '../stores/home_store.dart';

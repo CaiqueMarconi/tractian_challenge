@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:model/app/core/failures/app_failure/i_app_failure.dart';
-import 'package:model/app/features/home/domain/entities/tree_entity.dart';
-import 'package:model/app/features/home/domain/respositories/i_get_assets_repository.dart';
-import 'package:model/app/features/home/domain/usecases/get_assets_usecase/get_assets_usecase.dart';
+import 'package:tractian_challenge/app/core/failures/app_failure/i_app_failure.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/tree_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/respositories/i_get_assets_repository.dart';
+import 'package:tractian_challenge/app/features/home/domain/usecases/get_assets_usecase/get_assets_usecase.dart';
 
 import '../../mocks/app_failure_mock.dart';
 import '../../mocks/home_mock.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_triple/flutter_triple.dart';
-import 'package:model/app/features/home/domain/entities/tree_entity.dart';
-import 'package:model/app/features/home/domain/usecases/generate_tree_node_usecase/i_generate_tree_node_usecase.dart';
-import 'package:model/app/features/home/domain/usecases/get_companies_usecase/i_get_companies_usecase.dart';
+import 'package:tractian_challenge/app/features/home/domain/entities/tree_entity.dart';
+import 'package:tractian_challenge/app/features/home/domain/usecases/generate_tree_node_usecase/i_generate_tree_node_usecase.dart';
+import 'package:tractian_challenge/app/features/home/domain/usecases/get_companies_usecase/i_get_companies_usecase.dart';
 import 'home_state.dart';
 
 final class HomeStore extends Store<HomeState> {

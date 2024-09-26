@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:model/app/core/failures/app_failure/app_failure.dart';
+import 'package:tractian_challenge/app/core/failures/app_failure/app_failure.dart';
 import '../../../../core/failures/app_failure/i_app_failure.dart';
 import '../../domain/entities/tree_entity.dart';
 import '../../domain/helpers/params/get_assets_params.dart';

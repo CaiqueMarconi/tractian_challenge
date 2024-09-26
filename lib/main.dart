@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:model/app_module.dart';
+import 'package:tractian_challenge/app_module.dart';
 
 import 'app_widget.dart';
 

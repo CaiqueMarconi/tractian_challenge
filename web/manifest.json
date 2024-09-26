@@ -1,6 +1,6 @@
 {
-    "name": "model",
-    "short_name": "model",
+    "name": "tractian_challenge",
+    "short_name": "tractian_challenge",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

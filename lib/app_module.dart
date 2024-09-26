@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:model/app/features/home/home_module.dart';
+import 'package:tractian_challenge/app/features/home/home_module.dart';
 
 import 'app/core/core_module.dart';
 
