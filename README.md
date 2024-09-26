@@ -7,7 +7,7 @@ This project was developed as part of the Tractian challenge. It follows modern 
 
 - **Mason**: Used for code generation to accelerate the implementation process, ensuring consistency and reducing repetitive tasks.
 
-- **Clean Dart**: The project is structured based on the Clean Architecture principles, promoting separation of concerns and a clear distinction between data, domain, and presentation layers.
+- **Clean Dart**: The project is structured based on the Clean Architecture principles, promoting separation of concerns and a clear distinction between datasource, domain, repositories and presenter layers.
 
 - **Modular**: Implemented for both routing and dependency injection, allowing for modular code organization and better scalability.
 
