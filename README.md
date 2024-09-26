@@ -22,4 +22,16 @@ This project was developed as part of the Tractian challenge. It follows modern 
 - **Internationalization**: The app supports multiple languages, making it accessible to users in different regions.
 
 
+
+## Potential Improvements
+
+- **Performance Optimization**: The app's overall performance could be further optimized by refactoring certain components to reduce unnecessary rebuilds, improve scrolling performance.
+
+- **Increased Test Coverage**: to 100% in all usecases and stores.
+
 ![Logo](./assets/print.png)
+
+
+![Video Preview](./assets/video-1.gif)  ![Video Preview](./assets/video-2.gif)
+
+
